@@ -622,11 +622,10 @@ h2 {
 }
 /* Profil Fotoğrafı */
 .profile-photo {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #a78bfa; /* Mor çerçeve */
-    box-shadow: 0 0 15px rgba(167, 139, 250, 0.5); /* Hafif parıltı */
-    margin-top: 10px;
+    width: 220px;            /* boyut */
+    height: 220px;           /* boyut */
+    border-radius: 50%;      /* yuvarlak yapar */
+    object-fit: cover;       /* resmi kırpmadan doldurur */
+    border: 3px solid #a78bfa; /* mor çerçeve */
+    box-shadow: 0 0 15px rgba(167, 139, 250, 0.5); /* parıltı */
 }
