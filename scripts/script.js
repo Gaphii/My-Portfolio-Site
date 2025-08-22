@@ -1,28 +1,118 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Kar efekti oluştur
-    function createSnow() {
-        const snowContainer = document.querySelector('.snow-container');
-        const snowflakeCount = 100;
+ddocument.addEventListener('DOMContentLoaded', function() {
+    // Geometrik şekil efekti oluştur
+    function createGeometryEffect() {
+        const geometryContainer = document.querySelector('.geometry-container');
+        const shapeCount = 15;
+        const shapes = [];
         
-        for (let i = 0; i < snowflakeCount; i++) {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
+        // Şekil tipleri: circle, square, triangle, hexagon
+        const shapeTypes = ['circle', 'square', 'triangle', 'hexagon'];
+        const colors = ['#bb86fc', '#03dac6', '#cf6679', '#6200ea', '#018786'];
+        
+        for (let i = 0; i < shapeCount; i++) {
+            const shape = document.createElement('div');
+            shape.classList.add('geometry-shape');
             
-            // Rastgele boyut ve pozisyon
-            const size = Math.random() * 5 + 2;
+            // Rastgele özellikler
+            const size = Math.random() * 40 + 20;
             const posX = Math.random() * 100;
-            const delay = Math.random() * 20;
-            const duration = Math.random() * 10 + 10;
+            const posY = Math.random() * 100;
+            const type = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const rotation = Math.random() * 360;
+            const opacity = Math.random() * 0.4 + 0.3;
             
-            snowflake.style.width = `${size}px`;
-            snowflake.style.height = `${size}px`;
-            snowflake.style.left = `${posX}vw`;
-            snowflake.style.animationDelay = `${delay}s`;
-            snowflake.style.animationDuration = `${duration}s`;
-            snowflake.style.opacity = Math.random() * 0.6 + 0.4;
+            // Şekil özelliklerini ayarla
+            shape.style.width = `${size}px`;
+            shape.style.height = `${size}px`;
+            shape.style.left = `${posX}vw`;
+            shape.style.top = `${posY}vh`;
+            shape.style.opacity = opacity;
+            shape.style.transform = `rotate(${rotation}deg)`;
+            shape.style.backgroundColor = color;
             
-            snowContainer.appendChild(snowflake);
+            // Şekil tipine göre stiller
+            if (type === 'circle') {
+                shape.style.borderRadius = '50%';
+            } else if (type === 'triangle') {
+                shape.style.width = '0';
+                shape.style.height = '0';
+                shape.style.backgroundColor = 'transparent';
+                shape.style.borderLeft = `${size/2}px solid transparent`;
+                shape.style.borderRight = `${size/2}px solid transparent`;
+                shape.style.borderBottom = `${size}px solid ${color}`;
+            } else if (type === 'hexagon') {
+                shape.style.backgroundColor = 'transparent';
+                shape.style.position = 'relative';
+                shape.style.width = `${size}px`;
+                shape.style.height = `${size * 0.866}px`;
+                shape.style.backgroundColor = color;
+                shape.style.clipPath = 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)';
+            }
+            
+            geometryContainer.appendChild(shape);
+            shapes.push({
+                element: shape,
+                speedX: (Math.random() - 0.5) * 0.8,
+                speedY: (Math.random() - 0.5) * 0.8,
+                rotationSpeed: (Math.random() - 0.5) * 0.8
+            });
         }
+        
+        // Mouse hareketini takip et
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Şekilleri mouse pozisyonuna göre hareket ettir
+            shapes.forEach(shape => {
+                const rect = shape.element.getBoundingClientRect();
+                const shapeX = rect.left + rect.width / 2;
+                const shapeY = rect.top + rect.height / 2;
+                
+                const distanceX = mouseX - shapeX;
+                const distanceY = mouseY - shapeY;
+                const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+                
+                if (distance < 200) {
+                    const force = 1 - (distance / 200);
+                    shape.element.style.transform = `translate(${distanceX * force * 0.1}px, ${distanceY * force * 0.1}px) rotate(${shape.rotationSpeed * Date.now() / 20}deg)`;
+                    shape.element.style.opacity = 0.8;
+                } else {
+                    shape.element.style.transform = `rotate(${shape.rotationSpeed * Date.now() / 20}deg)`;
+                    shape.element.style.opacity = 0.3;
+                }
+            });
+        });
+        
+        // Şekilleri hareket ettir
+        function animateShapes() {
+            shapes.forEach(shape => {
+                const rect = shape.element.getBoundingClientRect();
+                
+                // Ekran sınırlarını kontrol et
+                if (rect.left < 0 || rect.right > window.innerWidth) {
+                    shape.speedX *= -1;
+                }
+                if (rect.top < 0 || rect.bottom > window.innerHeight) {
+                    shape.speedY *= -1;
+                }
+                
+                // Yeni pozisyonu hesapla
+                const currentX = parseFloat(shape.element.style.left || 0);
+                const currentY = parseFloat(shape.element.style.top || 0);
+                
+                shape.element.style.left = `${currentX + shape.speedX}px`;
+                shape.element.style.top = `${currentY + shape.speedY}px`;
+            });
+            
+            requestAnimationFrame(animateShapes);
+        }
+        
+        animateShapes();
     }
     
     // Yazı yazma efekti - Önce "GAPHI" yazıp sonra silecek ve "GÜRKAN KABASAKAL" yazacak
@@ -139,14 +229,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sayfa yüklendikten sonra animasyonları başlat
     setTimeout(advancedTypeWriter, 1000);
     setTimeout(animateSkills, 4000); // İsim yazımı bittikten sonra
-    createSnow();
-});
-// Discord butonuna tıklayınca sunucu daveti aç
-document.querySelector(".discord-btn").addEventListener("click", function() {
-    window.open("https://discord.gg/github", "_blank"); 
-    // 👆 kendi davet linkinle değiştir
-});
-// Spotify butonuna tıklayınca listeyi aç
-document.querySelector(".spotify-btn").addEventListener("click", function() {
-    window.open("https://open.spotify.com/playlist/37i9dQZF1DWWY64wDtewQt?si=06ce5fe29fa64cfd", "_blank"); 
+    createGeometryEffect();
 });
