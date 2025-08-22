@@ -1,4 +1,4 @@
-ddocument.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     // Geometrik şekil efekti oluştur
     function createGeometryEffect() {
         const geometryContainer = document.querySelector('.geometry-container');
