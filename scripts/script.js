@@ -36,43 +36,26 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Discord butonu için
     document.querySelector('.discord-btn').addEventListener('click', function() {
-        alert('Discord bağlantısı henüz ayarlanmadı. Kısa sürede eklenecek!');
+        alert('Discord: GürkanK#1234');
     });
     
-    // Sayfa geçişleri
+    // Navigasyon butonları
     const navButtons = document.querySelectorAll('.nav-btn');
-    const pageContents = document.querySelectorAll('.page-content');
     
     navButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const targetPage = this.getAttribute('data-page');
-            
             // Aktif butonu güncelle
             navButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
             
-            // Aktif sayfayı göster
-            pageContents.forEach(page => page.classList.remove('active'));
-            document.getElementById(`${targetPage}-page`).classList.add('active');
+            // Sayfa adını al
+            const pageName = this.textContent;
+            alert(`${pageName} sayfasına yönlendiriliyorsunuz...`);
         });
     });
     
-    // İletişim formu
-    const contactForm = document.getElementById('messageForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Mesajınız gönderildi! En kısa sürede sizinle iletişime geçeceğim.');
-            contactForm.reset();
-        });
-    }
-    
-    // Sosyal medya butonları
-    const socialButtons = document.querySelectorAll('.social-btn');
-    socialButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const platform = this.textContent;
-            alert(`${platform} sayfam yakında eklenecek!`);
-        });
+    // Spotify giriş butonu
+    document.getElementById('loginButton').addEventListener('click', function() {
+        alert('Spotify bağlantısı henüz kurulmadı. Yakında eklenecek!');
     });
 });
