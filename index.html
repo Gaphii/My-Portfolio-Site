@@ -6,186 +6,75 @@
     <title>Gürkan Kabasakal</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/snow.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <canvas id="snow"></canvas>
     
     <div class="container">
         <header>
-            <h1 class="typing-effect">Gürkan Kabasakal</h1>
-            <nav class="main-nav">
-                <button class="nav-btn active" data-page="home">Ana Sayfa</button>
-                <button class="nav-btn" data-page="about">Hakkımda</button>
-                <button class="nav-btn" data-page="experience">Tecrübelerim</button>
-                <button class="nav-btn" data-page="contact">İletişim</button>
-            </nav>
+            <h1 class="typing-effect">GÜRKAN KABASAKAL</h1>
             <div class="social-links">
-                <button class="discord-btn">
+                <button class="social-btn discord-btn">
                     <span class="btn-icon">D</span>
                     <span class="btn-text">Discord</span>
                 </button>
-                <button class="spotify-btn" id="spotifyAuth">
+                <button class="social-btn spotify-btn" id="spotifyAuth">
                     <span class="btn-icon">S</span>
                     <span class="btn-text">Spotify</span>
                 </button>
             </div>
         </header>
 
-        <main id="main-content">
-            <!-- Ana Sayfa İçeriği -->
-            <div class="page-content active" id="home-page">
-                <section class="profile-section">
-                    <div class="skills-container">
-                        <h2>Yeteneklerim</h2>
-                        <div class="skill">
-                            <span>HTML</span>
-                            <div class="skill-level">
-                                <div class="skill-progress" data-level="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span>CSS</span>
-                            <div class="skill-level">
-                                <div class="skill-progress" data-level="80"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span>JavaScript</span>
-                            <div class="skill-level">
-                                <div class="skill-progress" data-level="75"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span>Visual Studio Code</span>
-                            <div class="skill-level">
-                                <div class="skill-progress" data-level="90"></div>
-                            </div>
+        <main>
+            <section class="skills-section">
+                <h2>Yeteneklerim</h2>
+                <div class="skills-container">
+                    <div class="skill">
+                        <span>HTML</span>
+                        <div class="skill-level">
+                            <div class="skill-progress" data-level="85"></div>
                         </div>
                     </div>
-                </section>
+                    <div class="skill">
+                        <span>CSS</span>
+                        <div class="skill-level">
+                            <div class="skill-progress" data-level="80"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>JavaScript</span>
+                        <div class="skill-level">
+                            <div class="skill-progress" data-level="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Visual Studio Code</span>
+                        <div class="skill-level">
+                            <div class="skill-progress" data-level="90"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                <section class="spotify-section" id="spotifySection">
-                    <h2>Şu Anda Dinlediğim Şarkı</h2>
-                    <div class="spotify-player" id="spotifyPlayer">
-                        <p>Spotify bağlantısı için lütfen giriş yapın</p>
-                        <button id="loginButton" class="spotify-login-btn">Spotify ile Bağlan</button>
-                    </div>
-                </section>
-            </div>
+            <div class="divider"></div>
 
-            <!-- Hakkımda Sayfası -->
-            <div class="page-content" id="about-page">
-                <section class="about-section">
-                    <h2>Hakkımda</h2>
-                    <div class="about-content">
-                        <div class="about-text">
-                            <p>Merhaba, ben Gürkan Kabasakal. Web geliştirme ve tasarım konusunda tutkulu bir yazılım geliştiricisiyim. Kullanıcı deneyimini ön planda tutarak modern, fonksiyonel ve estetik web çözümleri üretmeyi seviyorum.</p>
-                            <p>Teknolojiye olan ilgim küçük yaşlarda başladı ve zaman içinde kendimi front-end ve back-end teknolojilerinde geliştirdim. Sürekli öğrenmeye ve kendimi güncel teknolojilerle geliştirmeye devam ediyorum.</p>
-                            <div class="personal-info">
-                                <div class="info-item">
-                                    <span class="info-label">Yaş:</span>
-                                    <span class="info-value">28</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Şehir:</span>
-                                    <span class="info-value">İstanbul</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Eğitim:</span>
-                                    <span class="info-value">Bilgisayar Mühendisliği</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">Deneyim:</span>
-                                    <span class="info-value">5+ Yıl</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="about-image">
-                            <div class="image-placeholder">
-                                <span>Profil Fotoğrafı</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
+            <section class="spotify-section">
+                <h2>Şu Anda Dinlediğim Şarkı</h2>
+                <div class="spotify-player">
+                    <p>Spotify bağlantısı için lütfen giriş yapın</p>
+                    <button id="loginButton" class="spotify-login-btn">Spotify ile Bağlan</button>
+                </div>
+            </section>
 
-            <!-- Tecrübelerim Sayfası -->
-            <div class="page-content" id="experience-page">
-                <section class="experience-section">
-                    <h2>Tecrübelerim</h2>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date">2022 - Şimdi</div>
-                            <div class="timeline-content">
-                                <h3>Senior Frontend Developer</h3>
-                                <h4>Teknoloji Şirketi A.Ş.</h4>
-                                <p>React ve Vue.js kullanarak kurumsal web uygulamaları geliştirdim. Ekip liderliği yaparak proje yönetimi ve kod incelemelerinden sorumlu oldum.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">2020 - 2022</div>
-                            <div class="timeline-content">
-                                <h3>Web Geliştirici</h3>
-                                <h4>Dijital Ajans B</h4>
-                                <p>Çeşitli müşteriler için responsive web siteleri ve e-ticaret platformları geliştirdim. JavaScript ve PHP tabanlı projelerde yer aldım.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">2018 - 2020</div>
-                            <div class="timeline-content">
-                                <h3>Junior Developer</h3>
-                                <h4>Yazılım Firması C</h4>
-                                <p>HTML, CSS ve JavaScript kullanarak arayüz geliştirme çalışmaları yaptım. Müşteri projelerinde front-end kodlaması yaptım.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
+            <div class="divider"></div>
 
-            <!-- İletişim Sayfası -->
-            <div class="page-content" id="contact-page">
-                <section class="contact-section">
-                    <h2>İletişim</h2>
-                    <div class="contact-content">
-                        <div class="contact-info">
-                            <h3>İletişim Bilgilerim</h3>
-                            <div class="contact-item">
-                                <span class="contact-icon">✉️</span>
-                                <span class="contact-text">gurkan@example.com</span>
-                            </div>
-                            <div class="contact-item">
-                                <span class="contact-icon">📱</span>
-                                <span class="contact-text">+90 555 123 45 67</span>
-                            </div>
-                            <div class="contact-item">
-                                <span class="contact-icon">📍</span>
-                                <span class="contact-text">İstanbul, Türkiye</span>
-                            </div>
-                            <div class="social-contact">
-                                <button class="social-btn">LinkedIn</button>
-                                <button class="social-btn">GitHub</button>
-                                <button class="social-btn">Twitter</button>
-                            </div>
-                        </div>
-                        <div class="contact-form">
-                            <h3>Mesaj Gönder</h3>
-                            <form id="messageForm">
-                                <div class="form-group">
-                                    <input type="text" placeholder="Adınız Soyadınız" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" placeholder="E-posta Adresiniz" required>
-                                </div>
-                                <div class="form-group">
-                                    <textarea placeholder="Mesajınız" rows="5" required></textarea>
-                                </div>
-                                <button type="submit" class="submit-btn">Gönder</button>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-            </div>
+            <nav class="bottom-nav">
+                <button class="nav-btn active">Ana Sayfa</button>
+                <button class="nav-btn">Hakkımda</button>
+                <button class="nav-btn">Tecrübelerim</button>
+                <button class="nav-btn">İletişim</button>
+            </nav>
         </main>
     </div>
 
