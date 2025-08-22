@@ -141,3 +141,8 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(animateSkills, 4000); // İsim yazımı bittikten sonra
     createSnow();
 });
+// Discord butonuna tıklayınca sunucu daveti aç
+document.querySelector(".discord-btn").addEventListener("click", function() {
+    window.open("https://discord.gg/github", "_blank"); 
+    // 👆 kendi davet linkinle değiştir
+});
