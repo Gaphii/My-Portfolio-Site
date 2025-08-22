@@ -1,19 +1,67 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Yazı yazma efekti
-    const typingElement = document.querySelector('.typing-effect');
-    const originalText = typingElement.textContent;
-    typingElement.textContent = '';
-    
-    let i = 0;
-    function typeWriter() {
-        if (i < originalText.length) {
-            typingElement.textContent += originalText.charAt(i);
-            i++;
-            setTimeout(typeWriter, 150);
+    // Kar efekti oluştur
+    function createSnow() {
+        const snowContainer = document.querySelector('.snow-container');
+        const snowflakeCount = 100;
+        
+        for (let i = 0; i < snowflakeCount; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            
+            // Rastgele boyut ve pozisyon
+            const size = Math.random() * 5 + 2;
+            const posX = Math.random() * 100;
+            const delay = Math.random() * 20;
+            const duration = Math.random() * 10 + 10;
+            
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+            snowflake.style.left = `${posX}vw`;
+            snowflake.style.animationDelay = `${delay}s`;
+            snowflake.style.animationDuration = `${duration}s`;
+            snowflake.style.opacity = Math.random() * 0.6 + 0.4;
+            
+            snowContainer.appendChild(snowflake);
         }
     }
     
-    setTimeout(typeWriter, 1000);
+    // Yazı yazma efekti - Önce "GAPHI" yazıp sonra silecek ve "GÜRKAN KABASAKAL" yazacak
+    const typingElement = document.querySelector('.typing-effect');
+    const finalText = "GÜRKAN KABASAKAL";
+    const tempText = "GAPHI";
+    typingElement.textContent = '';
+    
+    let step = 0;
+    function advancedTypeWriter() {
+        if (step === 0) {
+            // Önce GAPHI yaz
+            if (typingElement.textContent.length < tempText.length) {
+                typingElement.textContent += tempText.charAt(typingElement.textContent.length);
+                setTimeout(advancedTypeWriter, 150);
+            } else {
+                step = 1;
+                setTimeout(advancedTypeWriter, 1000); // 1 saniye bekle
+            }
+        } else if (step === 1) {
+            // GAPHI'yi sil
+            if (typingElement.textContent.length > 0) {
+                typingElement.textContent = typingElement.textContent.slice(0, -1);
+                setTimeout(advancedTypeWriter, 100);
+            } else {
+                step = 2;
+                setTimeout(advancedTypeWriter, 500); // 0.5 saniye bekle
+            }
+        } else if (step === 2) {
+            // GÜRKAN KABASAKAL yaz
+            if (typingElement.textContent.length < finalText.length) {
+                typingElement.textContent += finalText.charAt(typingElement.textContent.length);
+                setTimeout(advancedTypeWriter, 150);
+            } else {
+                // Yazma işlemi bittikten sonra imleci kaldır
+                typingElement.style.animation = 'none';
+            }
+        }
+    }
     
     // Yetenek seviyelerini animasyonla göster
     const skillBars = document.querySelectorAll('.skill-progress');
@@ -25,9 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Sayfa yüklendikten sonra animasyonu başlat
-    setTimeout(animateSkills, 1800);
-    
     // Spotify bağlantısı
     document.getElementById('spotifyAuth').addEventListener('click', function(e) {
         e.preventDefault();
@@ -36,10 +81,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Discord butonu için
     document.querySelector('.discord-btn').addEventListener('click', function() {
-        alert('Discord bağlantısı henüz ayarlanmadı. Kısa sürede eklenecek!');
+        alert('Discord: GürkanK#1234');
     });
     
-    // Sayfa geçişleri
+    // Navigasyon butonları
     const navButtons = document.querySelectorAll('.nav-btn');
     const pageContents = document.querySelectorAll('.page-content');
     
@@ -57,6 +102,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Spotify giriş butonu
+    document.getElementById('loginButton').addEventListener('click', function() {
+        // Şarkı bilgisini göster
+        const playerElement = document.querySelector('.spotify-player');
+        playerElement.innerHTML = `
+            <div class="track-info">
+                <div class="track-details">
+                    <div class="track-name">Sevdim Seni Bir Kere</div>
+                    <div class="track-artist">Mithat Körler</div>
+                </div>
+            </div>
+            <p>Şu an çalıyor</p>
+        `;
+    });
+    
     // İletişim formu
     const contactForm = document.getElementById('messageForm');
     if (contactForm) {
@@ -68,20 +128,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Sosyal medya butonları
-    const socialButtons = document.querySelectorAll('.social-btn');
+    const socialButtons = document.querySelectorAll('.social-contact .social-btn');
     socialButtons.forEach(button => {
         button.addEventListener('click', function() {
             const platform = this.textContent;
             alert(`${platform} sayfam yakında eklenecek!`);
         });
     });
-});
-// Discord butonuna tıklayınca sunucu daveti aç
-document.querySelector(".discord-btn").addEventListener("click", function() {
-    window.open("https://discord.gg/RH24rgjJ", "_blank"); 
-    // 👆 kendi davet linkinle değiştir
-});
-// Spotify butonuna tıklayınca listeyi aç
-document.querySelector(".spotify-btn").addEventListener("click", function() {
-    window.open("https://open.spotify.com/playlist/37i9dQZF1DWWY64wDtewQt?si=06ce5fe29fa64cfd", "_blank"); 
+    
+    // Sayfa yüklendikten sonra animasyonları başlat
+    setTimeout(advancedTypeWriter, 1000);
+    setTimeout(animateSkills, 4000); // İsim yazımı bittikten sonra
+    createSnow();
 });
