@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #e6e6e6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.typing-effect {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: #bb86fc;
+    position: relative;
+    display: inline-block;
+}
+
+.typing-effect::after {
+    content: "|";
+    position: absolute;
+    right: -15px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Discord Butonu */
+.discord-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.discord-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #ff00cc, #3333ff, #00ccff, #ff00cc);
+    background-size: 400%;
+    z-index: -1;
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.discord-btn:hover::before {
+    opacity: 1;
+}
+
+.discord-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.8);
+}
+
+.discord-btn:active {
+    transform: translateY(1px);
+}
+
+/* Spotify Butonu */
+.spotify-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #1DB954 0%, #1ed760 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(29, 185, 84, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.spotify-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #1DB954, #1ed760, #1DB954, #1ed760);
+    background-size: 400%;
+    z-index: -1;
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.spotify-btn:hover::before {
+    opacity: 1;
+}
+
+.spotify-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(29, 185, 84, 0.8);
+}
+
+.spotify-btn:active {
+    transform: translateY(1px);
+}
+
+/* Buton içeriği */
+.btn-icon {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.btn-text {
+    font-size: 16px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.profile-section {
+    background: rgba(30, 30, 46, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.profile-section h2 {
+    color: #bb86fc;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.skill {
+    margin-bottom: 1.5rem;
+}
+
+.skill span {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.skill-level {
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-progress {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #bb86fc, #6200ea);
+    width: 0;
+    transition: width 1.5s ease-in-out;
+    position: relative;
+}
+
+.skill-progress::after {
+    content: attr(data-level) "%";
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 0.8rem;
+    color: white;
+    line-height: 20px;
+}
+
+.spotify-section {
+    background: rgba(30, 30, 46, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.spotify-section h2 {
+    color: #1DB954;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.spotify-player {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.spotify-login-btn {
+    background: #1DB954;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 0 15px rgba(29, 185, 84, 0.5);
+}
+
+.spotify-login-btn:hover {
+    background: #1ed760;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(29, 185, 84, 0.8);
+}
+
+.track-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.track-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.track-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.track-details {
+    text-align: left;
+}
+
+.track-name {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.track-artist {
+    color: #bbbbbb;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .typing-effect {
+        font-size: 2.5rem;
+    }
+    
+    .profile-section, .spotify-section {
+        padding: 1.5rem;
+    }
+    
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .discord-btn, .spotify-btn {
+        width: 200px;
+    }
+}

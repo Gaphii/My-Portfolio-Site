@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gürkan Kabasakal</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/snow.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="snow"></canvas>
+    
+    <div class="container">
+        <header>
+            <h1 class="typing-effect">Gürkan Kabasakal</h1>
+            <div class="social-links">
+                <button class="discord-btn">
+                    <span class="btn-icon">D</span>
+                    <span class="btn-text">Discord</span>
+                </button>
+                <button class="spotify-btn" id="spotifyAuth">
+                    <span class="btn-icon">S</span>
+                    <span class="btn-text">Spotify</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="profile-section">
+                <div class="skills-container">
+                    <h2>Yeteneklerim</h2>
+                    <div class="skill">
+                        <span>HTML</span>
+                        <div class="skill-level">
+                            <div class="skill-progress" data-level="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>CSS</span>
+                        <div class="skill-level">
+                            <div class="skill-progress" data-level="80"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>JavaScript</span>
+                        <div class="skill-level">
+                            <div class="skill-progress" data-level="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Visual Studio Code</span>
+                        <div class="skill-level">
+                            <div class="skill-progress" data-level="90"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="spotify-section" id="spotifySection">
+                <h2>Şu Anda Dinlediğim Şarkı</h2>
+                <div class="spotify-player" id="spotifyPlayer">
+                    <p>Spotify bağlantısı için lütfen giriş yapın</p>
+                    <button id="loginButton" class="spotify-login-btn">Spotify ile Bağlan</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="scripts/snow.js"></script>
+    <script src="scripts/spotify.js"></script>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
