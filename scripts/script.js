@@ -1,4 +1,68 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Özel mouse imleci oluştur
+    function createCustomCursor() {
+        const cursor = document.createElement('div');
+        cursor.classList.add('custom-cursor');
+        document.body.appendChild(cursor);
+        
+        const cursorFollower = document.createElement('div');
+        cursorFollower.classList.add('custom-cursor-follower');
+        document.body.appendChild(cursorFollower);
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+        let followerX = 0;
+        let followerY = 0;
+        
+        // Mouse hareketini takip et
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        // Tıklama efekti
+        document.addEventListener('mousedown', function() {
+            cursor.classList.add('click');
+        });
+        
+        document.addEventListener('mouseup', function() {
+            cursor.classList.remove('click');
+        });
+        
+        // Hover efekti için tıklanabilir öğeleri bul
+        const hoverElements = document.querySelectorAll('button, a, input, textarea, .nav-btn, .social-btn');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', function() {
+                cursor.classList.add('hover');
+            });
+            
+            el.addEventListener('mouseleave', function() {
+                cursor.classList.remove('hover');
+            });
+        });
+        
+        // Animasyon döngüsü
+        function animateCursor() {
+            // Ana imleci güncelle
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            // Takipçi imleci güncelle
+            followerX += (mouseX - followerX) * 0.2;
+            followerY += (mouseY - followerY) * 0.2;
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        
+        animateCursor();
+    }
+    
     // Geometrik şekil efekti oluştur
     function createGeometryEffect() {
         const geometryContainer = document.querySelector('.geometry-container');
@@ -229,5 +293,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sayfa yüklendikten sonra animasyonları başlat
     setTimeout(advancedTypeWriter, 1000);
     setTimeout(animateSkills, 4000); // İsim yazımı bittikten sonra
+    
+    // Sadece mobil olmayan cihazlarda özel imleci oluştur
+    if (!/Mobi|Android/i.test(navigator.userAgent)) {
+        createCustomCursor();
+    }
+    
     createGeometryEffect();
 });
