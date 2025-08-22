@@ -76,3 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+// Discord butonuna tıklayınca sunucu daveti aç
+document.querySelector(".discord-btn").addEventListener("click", function() {
+    window.open("https://discord.gg/abc123xyz", "_blank"); 
+    // 👆 kendi davet linkinle değiştir
+});
