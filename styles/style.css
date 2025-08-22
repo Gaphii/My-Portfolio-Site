@@ -1,6 +1,58 @@
-/* Önceki stiller aynı kalacak, sadece yeni stiller eklenecek */
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* Navigasyon stilleri */
+/* Temel stiller */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0c0c1a 0%, #0a0a16 50%, #070710 100%);
+    color: #e6e6e6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Başlık */
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.typing-effect {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: #bb86fc;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 0 10px rgba(187, 134, 252, 0.5);
+}
+
+.typing-effect::after {
+    content: "|";
+    position: absolute;
+    right: -15px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Navigasyon */
 .main-nav {
     display: flex;
     justify-content: center;
@@ -11,9 +63,9 @@
 
 .nav-btn {
     padding: 10px 20px;
-    background: rgba(187, 134, 252, 0.2);
+    background: rgba(59, 38, 95, 0.5);
     color: #bb86fc;
-    border: 1px solid #bb86fc;
+    border: 1px solid #6a3d9e;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -21,14 +73,134 @@
 }
 
 .nav-btn:hover {
-    background: rgba(187, 134, 252, 0.3);
+    background: rgba(187, 134, 252, 0.2);
     transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(187, 134, 252, 0.3);
 }
 
 .nav-btn.active {
-    background: #bb86fc;
-    color: #1a1a2e;
+    background: #6a3d9e;
+    color: #ffffff;
     box-shadow: 0 0 15px rgba(187, 134, 252, 0.5);
+    border-color: #bb86fc;
+}
+
+/* Sosyal medya butonları */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Discord Butonu */
+.discord-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.discord-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #ff00cc, #3333ff, #00ccff, #ff00cc);
+    background-size: 400%;
+    z-index: -1;
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.discord-btn:hover::before {
+    opacity: 1;
+}
+
+.discord-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.8);
+}
+
+.discord-btn:active {
+    transform: translateY(1px);
+}
+
+/* Spotify Butonu */
+.spotify-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #1DB954 0%, #1aa34a 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(29, 185, 84, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.spotify-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #1DB954, #1ed760, #1DB954, #1ed760);
+    background-size: 400%;
+    z-index: -1;
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.spotify-btn:hover::before {
+    opacity: 1;
+}
+
+.spotify-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(29, 185, 84, 0.8);
+}
+
+.spotify-btn:active {
+    transform: translateY(1px);
+}
+
+/* Buton içeriği */
+.btn-icon {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.btn-text {
+    font-size: 16px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
 }
 
 /* Sayfa içerikleri */
@@ -46,23 +218,136 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hakkımda sayfası stilleri */
-.about-section {
-    background: rgba(30, 30, 46, 0.7);
+/* Bölüm stilleri */
+.profile-section, .about-section, .experience-section, .contact-section, .spotify-section {
+    background: rgba(20, 20, 35, 0.8);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 2rem;
     margin-bottom: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(187, 134, 252, 0.1);
 }
 
-.about-section h2 {
+/* Başlıklar */
+h2 {
     color: #bb86fc;
     margin-bottom: 1.5rem;
     text-align: center;
     font-size: 2rem;
+    text-shadow: 0 0 10px rgba(187, 134, 252, 0.3);
 }
 
+/* Yetenekler bölümü */
+.skills-container {
+    margin-top: 1.5rem;
+}
+
+.skill {
+    margin-bottom: 1.5rem;
+}
+
+.skill span {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #d8d8d8;
+}
+
+.skill-level {
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-progress {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #6a3d9e, #8a5ccc);
+    width: 0;
+    transition: width 1.5s ease-in-out;
+    position: relative;
+}
+
+.skill-progress::after {
+    content: attr(data-level) "%";
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 0.8rem;
+    color: white;
+    line-height: 20px;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Spotify bölümü */
+.spotify-player {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.spotify-login-btn {
+    background: #1DB954;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 0 15px rgba(29, 185, 84, 0.5);
+}
+
+.spotify-login-btn:hover {
+    background: #1ed760;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(29, 185, 84, 0.8);
+}
+
+.track-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.track-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.track-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.track-details {
+    text-align: left;
+}
+
+.track-name {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    color: #ffffff;
+}
+
+.track-artist {
+    color: #bbbbbb;
+    font-size: 1rem;
+}
+
+/* Hakkımda sayfası stilleri */
 .about-content {
     display: flex;
     gap: 2rem;
@@ -76,6 +361,7 @@
 .about-text p {
     margin-bottom: 1.5rem;
     line-height: 1.6;
+    color: #d8d8d8;
 }
 
 .personal-info {
@@ -111,31 +397,16 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #bb86fc, #6200ea);
+    background: linear-gradient(135deg, #6a3d9e, #8a5ccc);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-weight: 600;
+    box-shadow: 0 0 20px rgba(187, 134, 252, 0.3);
 }
 
 /* Tecrübelerim sayfası stilleri */
-.experience-section {
-    background: rgba(30, 30, 46, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.experience-section h2 {
-    color: #bb86fc;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    font-size: 2rem;
-}
-
 .timeline {
     position: relative;
     max-width: 800px;
@@ -149,7 +420,7 @@
     transform: translateX(-50%);
     width: 2px;
     height: 100%;
-    background: #bb86fc;
+    background: #6a3d9e;
 }
 
 .timeline-item {
@@ -185,11 +456,12 @@
 }
 
 .timeline-content {
-    background: rgba(187, 134, 252, 0.1);
+    background: rgba(59, 38, 95, 0.3);
     padding: 1.5rem;
     border-radius: 10px;
     border-left: 3px solid #bb86fc;
     width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .timeline-item:nth-child(even) .timeline-content {
@@ -203,7 +475,7 @@
 }
 
 .timeline-content h4 {
-    color: #e6e6e6;
+    color: #d8d8d8;
     margin-bottom: 1rem;
     font-size: 1rem;
     font-weight: 500;
@@ -223,6 +495,7 @@
     background: #bb86fc;
     border-radius: 50%;
     top: 20px;
+    box-shadow: 0 0 10px #bb86fc;
 }
 
 .timeline-item:nth-child(even)::after {
@@ -231,22 +504,6 @@
 }
 
 /* İletişim sayfası stilleri */
-.contact-section {
-    background: rgba(30, 30, 46, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.contact-section h2 {
-    color: #bb86fc;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    font-size: 2rem;
-}
-
 .contact-content {
     display: flex;
     gap: 2rem;
@@ -284,9 +541,9 @@
 
 .social-btn {
     padding: 8px 16px;
-    background: rgba(187, 134, 252, 0.2);
+    background: rgba(59, 38, 95, 0.5);
     color: #bb86fc;
-    border: 1px solid #bb86fc;
+    border: 1px solid #6a3d9e;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -294,7 +551,8 @@
 }
 
 .social-btn:hover {
-    background: rgba(187, 134, 252, 0.3);
+    background: rgba(187, 134, 252, 0.2);
+    box-shadow: 0 0 10px rgba(187, 134, 252, 0.3);
 }
 
 .contact-form {
@@ -314,11 +572,12 @@
 .form-group textarea {
     width: 100%;
     padding: 12px 15px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     color: #e6e6e6;
     font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
 }
 
 .form-group input:focus,
@@ -326,23 +585,30 @@
     outline: none;
     border-color: #bb86fc;
     box-shadow: 0 0 10px rgba(187, 134, 252, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #a0a0a0;
 }
 
 .submit-btn {
     padding: 12px 25px;
-    background: #bb86fc;
-    color: #1a1a2e;
+    background: #6a3d9e;
+    color: #ffffff;
     border: none;
     border-radius: 50px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(106, 61, 158, 0.4);
 }
 
 .submit-btn:hover {
-    background: #a971f5;
+    background: #7d4bb5;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(187, 134, 252, 0.4);
+    box-shadow: 0 5px 20px rgba(106, 61, 158, 0.6);
 }
 
 /* Responsive tasarım */
@@ -361,9 +627,30 @@
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .typing-effect {
+        font-size: 2.5rem;
+    }
+    
     .main-nav {
         flex-direction: column;
         align-items: center;
+    }
+    
+    .profile-section, .about-section, .experience-section, .contact-section, .spotify-section {
+        padding: 1.5rem;
+    }
+    
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .discord-btn, .spotify-btn {
+        width: 200px;
     }
     
     .timeline::before {
