@@ -13,16 +13,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Kar taneleri
     const flakes = [];
-    const flakeCount = 150;
-    const flakeSpeed = 1.5;
+    const flakeCount = 120;
+    const flakeSpeed = 1.2;
     
     // Kar tanesi nesnesi
     function Flake() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
+        this.size = Math.random() * 2 + 1;
         this.speed = Math.random() * flakeSpeed + 0.5;
-        this.wind = Math.random() * 0.5 - 0.25;
+        this.wind = Math.random() * 0.3 - 0.15;
         this.opacity = Math.random() * 0.5 + 0.3;
     }
     
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function drawFlakes() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
         ctx.beginPath();
         
         for (let i = 0; i < flakeCount; i++) {
