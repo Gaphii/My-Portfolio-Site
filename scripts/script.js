@@ -81,3 +81,7 @@ document.querySelector(".discord-btn").addEventListener("click", function() {
     window.open("https://discord.gg/RH24rgjJ", "_blank"); 
     // 👆 kendi davet linkinle değiştir
 });
+// Spotify butonuna tıklayınca listeyi aç
+document.querySelector(".spotify-btn").addEventListener("click", function() {
+    window.open("https://open.spotify.com/playlist/37i9dQZF1DWWY64wDtewQt?si=06ce5fe29fa64cfd", "_blank"); 
+});
