@@ -186,3 +186,43 @@ document.addEventListener('DOMContentLoaded', function() {
     // Uygulamayı başlat
     initApp();
 });
+document.addEventListener('DOMContentLoaded', function() {
+    // Önceki fonksiyonlar aynen kalacak...
+    
+    // CV İndirme butonu
+    function initCVDownload() {
+        const cvButton = document.querySelector('.cv-download-btn');
+        
+        if (cvButton) {
+            cvButton.addEventListener('click', function() {
+                // CV indirme işlemi
+                const link = document.createElement('a');
+                link.href = 'cv/CV_Gurkan_Kabasakal.pdf'; // CV dosyasının yolu
+                link.download = 'CV_Gurkan_Kabasakal.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Kullanıcıya feedback
+                const originalText = cvButton.innerHTML;
+                cvButton.innerHTML = '<i class="fas fa-check"></i> CV İndirildi!';
+                cvButton.style.background = 'linear-gradient(135deg, var(--success), #00a152)';
+                
+                // 3 saniye sonra eski haline dön
+                setTimeout(() => {
+                    cvButton.innerHTML = originalText;
+                    cvButton.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
+                }, 3000);
+            });
+        }
+    }
+    
+    // Uygulamayı başlat
+    function initApp() {
+        // Önceki init fonksiyonları...
+        initCVDownload(); // CV butonunu başlat
+    }
+    
+    // Uygulamayı başlat
+    initApp();
+});
