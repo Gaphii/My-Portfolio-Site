@@ -16,6 +16,16 @@ document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('mousemove', function(e) {
             mouseX = e.clientX;
             mouseY = e.clientY;
+            
+            // İmleçleri güncelle
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+            
+            // Outline için smooth hareket
+            outlineX += (mouseX - outlineX) * 0.1;
+            outlineY += (mouseY - outlineY) * 0.1;
+            cursorOutline.style.left = outlineX + 'px';
+            cursorOutline.style.top = outlineY + 'px';
         });
         
         // Hover efektleri için tıklanabilir öğeleri bul
@@ -32,25 +42,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 cursorOutline.classList.remove('hover');
             });
         });
+    }
+    
+    // Geometrik çubuk efekti
+    function initGeometryEffect() {
+        const container = document.querySelector('.geometry-container');
+        if (!container) return;
         
-        // Animasyon döngüsü
-        function animateCursor() {
-            // Dot cursor'ı güncelle
-            dotX += (mouseX - dotX) * 0.5;
-            dotY += (mouseY - dotY) * 0.5;
-            cursorDot.style.left = dotX + 'px';
-            cursorDot.style.top = dotY + 'px';
+        // Mevcut şekilleri temizle
+        container.innerHTML = '';
+        
+        // Çubukları oluştur
+        for (let i = 0; i < 20; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'geometry-bar';
             
-            // Outline cursor'ı güncelle
-            outlineX += (mouseX - outlineX) * 0.1;
-            outlineY += (mouseY - outlineY) * 0.1;
-            cursorOutline.style.left = outlineX + 'px';
-            cursorOutline.style.top = outlineY + 'px';
+            // Rastgele boyut ve pozisyon
+            const width = Math.random() * 100 + 50;
+            const height = Math.random() * 10 + 5;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const rotation = Math.random() * 360;
+            const opacity = Math.random() * 0.3 + 0.1;
             
-            requestAnimationFrame(animateCursor);
+            bar.style.width = `${width}px`;
+            bar.style.height = `${height}px`;
+            bar.style.left = `${posX}vw`;
+            bar.style.top = `${posY}vh`;
+            bar.style.opacity = opacity;
+            bar.style.transform = `rotate(${rotation}deg)`;
+            bar.style.borderRadius = '2px';
+            
+            container.appendChild(bar);
         }
-        
-        animateCursor();
     }
     
     // Sayfa geçişleri
@@ -105,76 +129,10 @@ document.addEventListener('DOMContentLoaded', function() {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Burada form verilerini işleyebilirsiniz
                 alert('Mesajınız gönderildi! En kısa sürede sizinle iletişime geçeceğim.');
                 contactForm.reset();
             });
         }
-    }
-    
-    // Geometrik şekil efekti
-    function initGeometryEffect() {
-        const container = document.querySelector('.geometry-container');
-        if (!container) return;
-        
-        const shapes = [];
-        const shapeTypes = ['circle', 'square', 'triangle', 'hexagon'];
-        const colors = ['#bb86fc', '#03dac6', '#cf6679', '#6200ea', '#018786'];
-        
-        // Şekilleri oluştur
-        for (let i = 0; i < 15; i++) {
-            const shape = document.createElement('div');
-            shape.className = 'geometry-shape';
-            
-            const size = Math.random() * 40 + 20;
-            const type = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            
-            shape.style.width = `${size}px`;
-            shape.style.height = `${size}px`;
-            shape.style.background = color;
-            shape.style.opacity = Math.random() * 0.4 + 0.1;
-            shape.style.left = `${Math.random() * 100}vw`;
-            shape.style.top = `${Math.random() * 100}vh`;
-            
-            if (type === 'circle') {
-                shape.style.borderRadius = '50%';
-            } else if (type === 'triangle') {
-                shape.style.background = 'transparent';
-                shape.style.borderLeft = `${size/2}px solid transparent`;
-                shape.style.borderRight = `${size/2}px solid transparent`;
-                shape.style.borderBottom = `${size}px solid ${color}`;
-            }
-            
-            container.appendChild(shape);
-            
-            shapes.push({
-                element: shape,
-                x: Math.random() * 100,
-                y: Math.random() * 100,
-                speedX: (Math.random() - 0.5) * 0.2,
-                speedY: (Math.random() - 0.5) * 0.2
-            });
-        }
-        
-        // Şekilleri hareket ettir
-        function moveShapes() {
-            shapes.forEach(shape => {
-                shape.x += shape.speedX;
-                shape.y += shape.speedY;
-                
-                // Ekran sınırlarını kontrol et
-                if (shape.x < 0 || shape.x > 100) shape.speedX *= -1;
-                if (shape.y < 0 || shape.y > 100) shape.speedY *= -1;
-                
-                shape.element.style.left = `${shape.x}vw`;
-                shape.element.style.top = `${shape.y}vh`;
-            });
-            
-            requestAnimationFrame(moveShapes);
-        }
-        
-        moveShapes();
     }
     
     // Kod animasyonu
@@ -190,6 +148,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     }
     
+    // Buton tıklama olayları
+    function initButtons() {
+        const buttons = document.querySelectorAll('.btn');
+        
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.classList.contains('btn-primary')) {
+                    // Projeler butonu
+                    document.querySelector('[data-section="skills"]').click();
+                } else if (this.classList.contains('btn-secondary')) {
+                    // İletişim butonu
+                    document.querySelector('[data-section="contact"]').click();
+                }
+            });
+        });
+    }
+    
     // Uygulamayı başlat
     function initApp() {
         // Sadece mobil olmayan cihazlarda özel imleci etkinleştir
@@ -202,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initForms();
         initGeometryEffect();
         initCodeAnimation();
+        initButtons();
         
         // Sayfa yüklendiğinde ilk section'ı göster
         document.getElementById('home').classList.add('active');
