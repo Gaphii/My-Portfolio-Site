@@ -750,3 +750,52 @@ body {
         font-size: 2rem;
     }
 }
+/* CV İndirme Butonu */
+.cv-download-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.cv-download-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(187, 134, 252, 0.4);
+    z-index: 1001;
+}
+
+.cv-download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(187, 134, 252, 0.6);
+}
+
+.cv-download-btn:active {
+    transform: translateY(-1px);
+}
+
+/* Mobil cihazlar için */
+@media (max-width: 768px) {
+    .cv-download-container {
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    .cv-download-btn {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .cv-download-btn {
+        cursor: auto;
+    }
+}
