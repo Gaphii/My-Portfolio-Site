@@ -1,6 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Özel mouse imleci
+    // Yükleniyor ekranını gizle
+    function hideLoadingScreen() {
+        const loadingScreen = document.querySelector('.loading-screen');
+        if (loadingScreen) {
+            // Sayfanın tamamen yüklendiğinden emin ol
+            if (document.readyState === 'complete') {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            } else {
+                window.addEventListener('load', hideLoadingScreen);
+            }
+        }
+    }
+
+    // Optimize edilmiş mouse imleci
     function initCustomCursor() {
+        // Sadece desktop için
+        if (window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent)) {
+            document.body.style.cursor = 'auto';
+            return;
+        }
+
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
         
@@ -8,28 +30,35 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let mouseX = 0;
         let mouseY = 0;
-        let dotX = 0;
-        let dotY = 0;
         let outlineX = 0;
         let outlineY = 0;
+        
+        // RAF için optimize
+        let rafId = null;
+        
+        const updateCursor = () => {
+            // Outline için smooth hareket
+            outlineX += (mouseX - outlineX) * 0.1;
+            outlineY += (mouseY - outlineY) * 0.1;
+            
+            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+            cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
+            
+            rafId = requestAnimationFrame(updateCursor);
+        };
         
         document.addEventListener('mousemove', function(e) {
             mouseX = e.clientX;
             mouseY = e.clientY;
             
-            // İmleçleri güncelle
-            cursorDot.style.left = mouseX + 'px';
-            cursorDot.style.top = mouseY + 'px';
-            
-            // Outline için smooth hareket
-            outlineX += (mouseX - outlineX) * 0.1;
-            outlineY += (mouseY - outlineY) * 0.1;
-            cursorOutline.style.left = outlineX + 'px';
-            cursorOutline.style.top = outlineY + 'px';
+            // RAF başlatılmadıysa başlat
+            if (!rafId) {
+                updateCursor();
+            }
         });
         
-        // Hover efektleri için tıklanabilir öğeleri bul
-        const hoverElements = document.querySelectorAll('a, button, .nav-item, .social-link, input, textarea, .btn');
+        // Hover efektleri
+        const hoverElements = document.querySelectorAll('a, button, .nav-item, .social-link, input, textarea, .btn, .project-card');
         
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', function() {
@@ -42,9 +71,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 cursorOutline.classList.remove('hover');
             });
         });
+        
+        // Temizleme
+        document.addEventListener('mouseleave', () => {
+            cursorDot.style.opacity = '0';
+            cursorOutline.style.opacity = '0';
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            cursorDot.style.opacity = '1';
+            cursorOutline.style.opacity = '1';
+        });
     }
-    
-    // Geometrik çubuk efekti
+
+    // Optimize edilmiş geometrik şekiller
     function initGeometryEffect() {
         const container = document.querySelector('.geometry-container');
         if (!container) return;
@@ -52,18 +92,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Mevcut şekilleri temizle
         container.innerHTML = '';
         
-        // Çubukları oluştur
-        for (let i = 0; i < 20; i++) {
+        const barCount = window.innerWidth < 768 ? 10 : 15; // Mobilde daha az bar
+        
+        for (let i = 0; i < barCount; i++) {
             const bar = document.createElement('div');
             bar.className = 'geometry-bar';
             
-            // Rastgele boyut ve pozisyon
-            const width = Math.random() * 100 + 50;
-            const height = Math.random() * 10 + 5;
+            // Performans için basit çubuklar
+            const width = Math.random() * 80 + 40;
+            const height = Math.random() * 8 + 4;
             const posX = Math.random() * 100;
             const posY = Math.random() * 100;
             const rotation = Math.random() * 360;
-            const opacity = Math.random() * 0.3 + 0.1;
+            const opacity = Math.random() * 0.2 + 0.1;
             
             bar.style.width = `${width}px`;
             bar.style.height = `${height}px`;
@@ -72,157 +113,134 @@ document.addEventListener('DOMContentLoaded', function() {
             bar.style.opacity = opacity;
             bar.style.transform = `rotate(${rotation}deg)`;
             bar.style.borderRadius = '2px';
+            bar.style.backgroundColor = `rgba(187, 134, 252, ${opacity})`;
+            bar.style.border = `1px solid rgba(187, 134, 252, ${opacity * 2})`;
             
             container.appendChild(bar);
         }
     }
-    
-    // Sayfa geçişleri
-    function initNavigation() {
-        const navItems = document.querySelectorAll('.nav-item');
-        const sections = document.querySelectorAll('.content-section');
+
+    // Projeler filtreleme
+    function initProjectsFilter() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
         
-        navItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetSection = this.getAttribute('data-section');
-                
-                // Aktif nav item'ını güncelle
-                navItems.forEach(nav => nav.classList.remove('active'));
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Aktif butonu güncelle
+                filterBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 
-                // Aktif section'ı göster
-                sections.forEach(section => section.classList.remove('active'));
-                document.getElementById(targetSection).classList.add('active');
+                const filter = this.getAttribute('data-filter');
                 
-                // Sayfa başına kaydır
-                window.scrollTo(0, 0);
+                // Projeleri filtrele
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, 10);
+                    } else {
+                        card.classList.remove('visible');
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
             });
         });
     }
-    
-    // Yetenek barlarını animasyonla göster
-    function animateSkillBars() {
-        const skillBars = document.querySelectorAll('.skill-progress');
+
+    // Lazy Loading
+    function initLazyLoading() {
+        const lazyElements = document.querySelectorAll('.project-card, .skill-progress');
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const level = entry.target.getAttribute('data-level');
-                    entry.target.style.width = level + '%';
+                    entry.target.classList.add('visible');
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.1 });
         
-        skillBars.forEach(bar => {
-            observer.observe(bar);
+        lazyElements.forEach(el => {
+            el.classList.add('lazy-load');
+            observer.observe(el);
         });
     }
-    
-    // Form gönderimi
-    function initForms() {
-        const contactForm = document.querySelector('.contact-form');
+
+    // Daha fazla proje göster
+    function initShowMoreProjects() {
+        const showMoreBtn = document.getElementById('showMoreProjects');
+        const hiddenProjects = document.querySelectorAll('.project-card:nth-child(n+7)');
         
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
+        if (showMoreBtn && hiddenProjects.length > 0) {
+            hiddenProjects.forEach(project => {
+                project.style.display = 'none';
+            });
+            
+            showMoreBtn.addEventListener('click', function() {
+                hiddenProjects.forEach(project => {
+                    project.style.display = 'block';
+                    setTimeout(() => {
+                        project.classList.add('visible');
+                    }, 10);
+                });
                 
-                alert('Mesajınız gönderildi! En kısa sürede sizinle iletişime geçeceğim.');
-                contactForm.reset();
+                this.style.display = 'none';
+                this.previousElementSibling.style.display = 'none';
             });
         }
     }
-    
-    // Kod animasyonu
-    function initCodeAnimation() {
-        const codeLines = document.querySelectorAll('.code-line');
-        if (!codeLines.length) return;
+
+    // Optimize edilmiş animasyonlar
+    function initOptimizedAnimations() {
+        // RequestAnimationFrame ile optimize edilmiş animasyonlar
+        let lastScrollY = window.scrollY;
         
-        setInterval(() => {
-            codeLines.forEach(line => {
-                const randomWidth = Math.random() * 80 + 20;
-                line.style.width = `${randomWidth}%`;
-            });
-        }, 2000);
-    }
-    
-    // Buton tıklama olayları
-    function initButtons() {
-        const buttons = document.querySelectorAll('.btn');
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            
+            // Scroll performansını optimize et
+            if (Math.abs(currentScrollY - lastScrollY) > 50) {
+                lastScrollY = currentScrollY;
+                // Gerekli scroll animasyonları burada
+            }
+        };
         
-        buttons.forEach(button => {
-            button.addEventListener('click', function() {
-                if (this.classList.contains('btn-primary')) {
-                    // Projeler butonu
-                    document.querySelector('[data-section="skills"]').click();
-                } else if (this.classList.contains('btn-secondary')) {
-                    // İletişim butonu
-                    document.querySelector('[data-section="contact"]').click();
-                }
-            });
-        });
+        window.addEventListener('scroll', handleScroll, { passive: true });
     }
-    
+
     // Uygulamayı başlat
     function initApp() {
-        // Sadece mobil olmayan cihazlarda özel imleci etkinleştir
-        if (!/Mobi|Android/i.test(navigator.userAgent)) {
-            initCustomCursor();
-        }
-        
+        // Öncelikli işlemler
+        hideLoadingScreen();
         initNavigation();
-        animateSkillBars();
-        initForms();
-        initGeometryEffect();
-        initCodeAnimation();
-        initButtons();
+        initLazyLoading();
+        
+        // Sonraki işlemler
+        setTimeout(() => {
+            initCustomCursor();
+            initGeometryEffect();
+            initProjectsFilter();
+            initShowMoreProjects();
+            initOptimizedAnimations();
+            animateSkillBars();
+            initForms();
+            initCodeAnimation();
+            initButtons();
+            initCVDownload();
+        }, 100);
         
         // Sayfa yüklendiğinde ilk section'ı göster
         document.getElementById('home').classList.add('active');
     }
-    
+
     // Uygulamayı başlat
-    initApp();
-});
-document.addEventListener('DOMContentLoaded', function() {
-    // Önceki fonksiyonlar aynen kalacak...
-    
-    // CV İndirme butonu
-    function initCVDownload() {
-        const cvButton = document.querySelector('.cv-download-btn');
-        
-        if (cvButton) {
-            cvButton.addEventListener('click', function() {
-                // CV indirme işlemi
-                const link = document.createElement('a');
-                link.href = 'cv/CV_Gurkan_Kabasakal.pdf'; // CV dosyasının yolu
-                link.download = 'CV_Gurkan_Kabasakal.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                // Kullanıcıya feedback
-                const originalText = cvButton.innerHTML;
-                cvButton.innerHTML = '<i class="fas fa-check"></i> CV İndirildi!';
-                cvButton.style.background = 'linear-gradient(135deg, var(--success), #00a152)';
-                
-                // 3 saniye sonra eski haline dön
-                setTimeout(() => {
-                    cvButton.innerHTML = originalText;
-                    cvButton.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
-                }, 3000);
-            });
-        }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+        initApp();
     }
-    
-    // Uygulamayı başlat
-    function initApp() {
-        // Önceki init fonksiyonları...
-        initCVDownload(); // CV butonunu başlat
-    }
-    
-    // Uygulamayı başlat
-    initApp();
 });
