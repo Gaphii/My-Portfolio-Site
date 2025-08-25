@@ -1,107 +1,53 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Özel mouse imleci
-    function initCustomCursor() {
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-        
-        if (!cursorDot || !cursorOutline) return;
-        
-        let mouseX = 0;
-        let mouseY = 0;
-        let dotX = 0;
-        let dotY = 0;
-        let outlineX = 0;
-        let outlineY = 0;
-        
-        document.addEventListener('mousemove', function(e) {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            // İmleçleri güncelle
-            cursorDot.style.left = mouseX + 'px';
-            cursorDot.style.top = mouseY + 'px';
-            
-            // Outline için smooth hareket
-            outlineX += (mouseX - outlineX) * 0.1;
-            outlineY += (mouseY - outlineY) * 0.1;
-            cursorOutline.style.left = outlineX + 'px';
-            cursorOutline.style.top = outlineY + 'px';
-        });
-        
-        // Hover efektleri için tıklanabilir öğeleri bul
-        const hoverElements = document.querySelectorAll('a, button, .nav-item, .social-link, input, textarea, .btn');
-        
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', function() {
-                cursorDot.classList.add('hover');
-                cursorOutline.classList.add('hover');
-            });
-            
-            el.addEventListener('mouseleave', function() {
-                cursorDot.classList.remove('hover');
-                cursorOutline.classList.remove('hover');
-            });
-        });
-    }
-    
-    // Geometrik çubuk efekti
-    function initGeometryEffect() {
-        const container = document.querySelector('.geometry-container');
-        if (!container) return;
-        
-        // Mevcut şekilleri temizle
-        container.innerHTML = '';
-        
-        // Çubukları oluştur
-        for (let i = 0; i < 20; i++) {
-            const bar = document.createElement('div');
-            bar.className = 'geometry-bar';
-            
-            // Rastgele boyut ve pozisyon
-            const width = Math.random() * 100 + 50;
-            const height = Math.random() * 10 + 5;
-            const posX = Math.random() * 100;
-            const posY = Math.random() * 100;
-            const rotation = Math.random() * 360;
-            const opacity = Math.random() * 0.3 + 0.1;
-            
-            bar.style.width = `${width}px`;
-            bar.style.height = `${height}px`;
-            bar.style.left = `${posX}vw`;
-            bar.style.top = `${posY}vh`;
-            bar.style.opacity = opacity;
-            bar.style.transform = `rotate(${rotation}deg)`;
-            bar.style.borderRadius = '2px';
-            
-            container.appendChild(bar);
+    // Yükleniyor ekranını gizle
+    function hideLoadingScreen() {
+        const loadingScreen = document.querySelector('.loading-screen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
         }
     }
-    
+
     // Sayfa geçişleri
     function initNavigation() {
         const navItems = document.querySelectorAll('.nav-item');
         const sections = document.querySelectorAll('.content-section');
+        const buttons = document.querySelectorAll('.btn');
+        
+        function activateSection(sectionId) {
+            // Aktif nav item'ını güncelle
+            navItems.forEach(nav => nav.classList.remove('active'));
+            document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
+            
+            // Aktif section'ı göster
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Sayfa başına kaydır
+            window.scrollTo(0, 0);
+        }
         
         navItems.forEach(item => {
             item.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetSection = this.getAttribute('data-section');
-                
-                // Aktif nav item'ını güncelle
-                navItems.forEach(nav => nav.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Aktif section'ı göster
-                sections.forEach(section => section.classList.remove('active'));
-                document.getElementById(targetSection).classList.add('active');
-                
-                // Sayfa başına kaydır
-                window.scrollTo(0, 0);
+                activateSection(targetSection);
+            });
+        });
+        
+        // Butonlara tıklama olayları
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetSection = this.getAttribute('data-section');
+                if (targetSection) {
+                    activateSection(targetSection);
+                }
             });
         });
     }
-    
+
     // Yetenek barlarını animasyonla göster
     function animateSkillBars() {
         const skillBars = document.querySelectorAll('.skill-progress');
@@ -110,7 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const level = entry.target.getAttribute('data-level');
-                    entry.target.style.width = level + '%';
+                    setTimeout(() => {
+                        entry.target.style.width = level + '%';
+                    }, 200);
                     observer.unobserve(entry.target);
                 }
             });
@@ -120,21 +68,75 @@ document.addEventListener('DOMContentLoaded', function() {
             observer.observe(bar);
         });
     }
-    
-    // Form gönderimi
-    function initForms() {
-        const contactForm = document.querySelector('.contact-form');
+
+    // Projeler filtreleme
+    function initProjectsFilter() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
         
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Aktif butonu güncelle
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
                 
-                alert('Mesajınız gönderildi! En kısa sürede sizinle iletişime geçeceğim.');
-                contactForm.reset();
+                const filter = this.getAttribute('data-filter');
+                
+                // Projeleri filtrele
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
             });
+        });
+    }
+
+    // Geometrik şekil efekti
+    function initGeometryEffect() {
+        const container = document.querySelector('.geometry-container');
+        if (!container) return;
+        
+        // Mevcut şekilleri temizle
+        container.innerHTML = '';
+        
+        const barCount = window.innerWidth < 768 ? 10 : 15;
+        
+        for (let i = 0; i < barCount; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'geometry-bar';
+            
+            const width = Math.random() * 80 + 40;
+            const height = Math.random() * 8 + 4;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const rotation = Math.random() * 360;
+            const opacity = Math.random() * 0.2 + 0.1;
+            
+            bar.style.width = `${width}px`;
+            bar.style.height = `${height}px`;
+            bar.style.left = `${posX}vw`;
+            bar.style.top = `${posY}vh`;
+            bar.style.opacity = opacity;
+            bar.style.transform = `rotate(${rotation}deg)`;
+            bar.style.borderRadius = '2px';
+            bar.style.backgroundColor = `rgba(187, 134, 252, ${opacity})`;
+            bar.style.border = `1px solid rgba(187, 134, 252, ${opacity * 2})`;
+            
+            container.appendChild(bar);
         }
     }
-    
+
     // Kod animasyonu
     function initCodeAnimation() {
         const codeLines = document.querySelectorAll('.code-line');
@@ -147,42 +149,43 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, 2000);
     }
-    
-    // Buton tıklama olayları
-    function initButtons() {
-        const buttons = document.querySelectorAll('.btn');
+
+    // Form gönderimi
+    function initForms() {
+        const contactForm = document.querySelector('.contact-form');
         
-        buttons.forEach(button => {
-            button.addEventListener('click', function() {
-                if (this.classList.contains('btn-primary')) {
-                    // Projeler butonu
-                    document.querySelector('[data-section="skills"]').click();
-                } else if (this.classList.contains('btn-secondary')) {
-                    // İletişim butonu
-                    document.querySelector('[data-section="contact"]').click();
-                }
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Mesajınız gönderildi! En kısa sürede sizinle iletişime geçeceğim.');
+                contactForm.reset();
             });
-        });
+        }
     }
-    
+
     // Uygulamayı başlat
     function initApp() {
-        // Sadece mobil olmayan cihazlarda özel imleci etkinleştir
-        if (!/Mobi|Android/i.test(navigator.userAgent)) {
-            initCustomCursor();
-        }
-        
+        // Öncelikli işlemler
+        hideLoadingScreen();
         initNavigation();
-        animateSkillBars();
-        initForms();
-        initGeometryEffect();
-        initCodeAnimation();
-        initButtons();
+        
+        // Sonraki işlemler
+        setTimeout(() => {
+            initGeometryEffect();
+            initProjectsFilter();
+            animateSkillBars();
+            initForms();
+            initCodeAnimation();
+        }, 100);
         
         // Sayfa yüklendiğinde ilk section'ı göster
         document.getElementById('home').classList.add('active');
     }
-    
+
     // Uygulamayı başlat
-    initApp();
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+        initApp();
+    }
 });
