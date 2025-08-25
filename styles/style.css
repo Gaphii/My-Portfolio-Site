@@ -1022,3 +1022,57 @@ body {
         flex-wrap: wrap;
     }
 }
+/* Form Doğrulama Stilleri */
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-group.focused label {
+    transform: translateY(-25px) scale(0.85);
+    color: var(--primary);
+}
+
+.form-group.error input,
+.form-group.error textarea {
+    border-color: var(--error);
+    box-shadow: 0 0 0 2px rgba(207, 102, 121, 0.1);
+}
+
+.form-group.success input,
+.form-group.success textarea {
+    border-color: var(--success);
+    box-shadow: 0 0 0 2px rgba(0, 200, 83, 0.1);
+}
+
+.form-group.error::after {
+    content: '✗';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--error);
+    font-size: 1.2rem;
+}
+
+.form-group.success::after {
+    content: '✓';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--success);
+    font-size: 1.2rem;
+}
+
+/* Form grupları için label (opsiyonel) */
+.form-group label {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    color: var(--text-secondary);
+    pointer-events: none;
+    transition: var(--transition);
+    background: var(--surface-light);
+    padding: 0 5px;
+}
