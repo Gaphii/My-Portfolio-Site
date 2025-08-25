@@ -189,3 +189,111 @@ document.addEventListener('DOMContentLoaded', function() {
         initApp();
     }
 });
+// Form doğrulama fonksiyonu
+function initFormValidation() {
+    const contactForm = document.querySelector('.contact-form');
+    
+    if (contactForm) {
+        const inputs = contactForm.querySelectorAll('input, textarea');
+        
+        inputs.forEach(input => {
+            // Input focus olduğunda
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            // Input focus'tan çıktığında
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('focused');
+                validateField(this);
+            });
+            
+            // Input değiştiğinde
+            input.addEventListener('input', function() {
+                if (this.parentElement.classList.contains('error')) {
+                    validateField(this);
+                }
+            });
+        });
+        
+        // Form gönderimi
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            
+            // Tüm alanları doğrula
+            inputs.forEach(input => {
+                if (!validateField(input)) {
+                    isValid = false;
+                }
+            });
+            
+            if (isValid) {
+                // Form gönderim işlemi
+                alert('Mesajınız gönderildi! En kısa sürede sizinle iletişime geçeceğim.');
+                contactForm.reset();
+                
+                // Hata sınıflarını temizle
+                inputs.forEach(input => {
+                    input.parentElement.classList.remove('error', 'success');
+                });
+            }
+        });
+        
+        // Alan doğrulama fonksiyonu
+        function validateField(field) {
+            const value = field.value.trim();
+            const formGroup = field.parentElement;
+            
+            // Önceki hata/success sınıflarını temizle
+            formGroup.classList.remove('error', 'success');
+            
+            // Validasyon kuralları
+            if (field.hasAttribute('required') && !value) {
+                formGroup.classList.add('error');
+                return false;
+            }
+            
+            if (field.type === 'email' && value) {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(value)) {
+                    formGroup.classList.add('error');
+                    return false;
+                }
+            }
+            
+            formGroup.classList.add('success');
+            return true;
+        }
+    }
+}
+
+// Timeline animasyonu
+function initTimelineAnimation() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    timelineItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(item);
+    });
+}
+
+// Uygulamayı başlat fonksiyonuna ekle
+function initApp() {
+    // Önceki fonksiyonlar...
+    initFormValidation();
+    initTimelineAnimation();
+    // Diğer init fonksiyonları...
+}
