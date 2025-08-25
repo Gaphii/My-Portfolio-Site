@@ -10,8 +10,12 @@
 </head>
 <body>
     <div class="geometry-container"></div>
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+    
+    <!-- Yükleniyor Ekranı -->
+    <div class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Yükleniyor...</p>
+    </div>
     
     <div class="container">
         <!-- Sol Sidebar -->
@@ -53,8 +57,12 @@
                         <i class="fas fa-code"></i>
                         <span>Yetenekler</span>
                     </a>
-                    <a href="#experience" class="nav-item" data-section="experience">
+                    <a href="#projects" class="nav-item" data-section="projects">
                         <i class="fas fa-briefcase"></i>
+                        <span>Projelerim</span>
+                    </a>
+                    <a href="#experience" class="nav-item" data-section="experience">
+                        <i class="fas fa-chart-line"></i>
                         <span>Deneyim</span>
                     </a>
                     <a href="#contact" class="nav-item" data-section="contact">
@@ -96,8 +104,8 @@
                             ve estetik web çözümleri üretmeye tutkuluyum.
                         </p>
                         <div class="hero-actions">
-                            <button class="btn btn-primary">Projelerimi Gör</button>
-                            <button class="btn btn-secondary">İletişime Geç</button>
+                            <button class="btn btn-primary" data-section="projects">Projelerimi Gör</button>
+                            <button class="btn btn-secondary" data-section="contact">İletişime Geç</button>
                         </div>
                     </div>
                     <div class="hero-visual">
@@ -243,6 +251,191 @@
                 </div>
             </section>
 
+            <!-- Projelerim -->
+            <section id="projects" class="content-section">
+                <div class="section-header">
+                    <h2>Projelerim</h2>
+                    <p>Yaptığım çalışmalardan öne çıkanlar</p>
+                </div>
+                
+                <div class="projects-filter">
+                    <button class="filter-btn active" data-filter="all">Tümü</button>
+                    <button class="filter-btn" data-filter="web">Web</button>
+                    <button class="filter-btn" data-filter="mobile">Mobil</button>
+                    <button class="filter-btn" data-filter="design">Tasarım</button>
+                </div>
+                
+                <div class="projects-grid">
+                    <!-- Proje 1 -->
+                    <div class="project-card" data-category="web">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>E-Ticaret Platformu</h3>
+                            <p>React ve Node.js ile geliştirdiğim modern e-ticaret çözümü.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proje 2 -->
+                    <div class="project-card" data-category="web">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Finans Dashboard</h3>
+                            <p>Gerçek zamanlı veri görselleştirme için dashboard uygulaması.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">D3.js</span>
+                                <span class="tech-tag">Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proje 3 -->
+                    <div class="project-card" data-category="mobile">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Fitness Uygulaması</h3>
+                            <p>Kişisel antrenman takibi için React Native uygulaması.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React Native</span>
+                                <span class="tech-tag">Redux</span>
+                                <span class="tech-tag">Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proje 4 -->
+                    <div class="project-card" data-category="design">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>UI/UX Tasarım Seti</h3>
+                            <p>Modern arayüzler için tasarım sistemi ve component kütüphanesi.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Figma</span>
+                                <span class="tech-tag">Adobe XD</span>
+                                <span class="tech-tag">Sketch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proje 5 -->
+                    <div class="project-card" data-category="web">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <i class="fas fa-blog"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Kişisel Blog</h3>
+                            <p>Next.js ve GraphQL ile geliştirdiğim kişisel blog platformu.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">GraphQL</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proje 6 -->
+                    <div class="project-card" data-category="mobile">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Yemek Tarifleri</h3>
+                            <p>Yemek tarifleri paylaşımı için Flutter uygulaması.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Flutter</span>
+                                <span class="tech-tag">Dart</span>
+                                <span class="tech-tag">SQLite</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Deneyim -->
             <section id="experience" class="content-section">
                 <div class="section-header">
@@ -268,7 +461,7 @@
                         <div class="timeline-content">
                             <h3>Web Geliştirici</h3>
                             <h4>Pixel MC A.Ş.</h4>
-                            <p>Çeşitli müşteriler için responsive web siteleri ve e-ticaret platformları geliştirdim. JavaScript and PHP tabanlı projelerde yer aldım.</p>
+                            <p>Çeşitli müşteriler için responsive web siteleri ve e-ticaret platformları geliştirdim. JavaScript ve PHP tabanlı projelerde yer aldım.</p>
                             <div class="timeline-tags">
                                 <span class="tag">JavaScript</span>
                                 <span class="tag">PHP</span>
