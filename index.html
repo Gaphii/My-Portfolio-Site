@@ -7,6 +7,357 @@
     <link rel="stylesheet" href="styles/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="geometry-container"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    
+    <div class="container">
+        <!-- Sol Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="avatar">
+                        <div class="avatar-initials">GK</div>
+                    </div>
+                    <h1 class="profile-name">Gürkan Kabasakal</h1>
+                    <p class="profile-title">Full Stack Developer</p>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Yıl Deneyim</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24+</span>
+                        <span class="stat-label">Proje</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">12+</span>
+                        <span class="stat-label">Teknoloji</span>
+                    </div>
+                </div>
+                
+                <nav class="sidebar-nav">
+                    <a href="#home" class="nav-item active" data-section="home">
+                        <i class="fas fa-home"></i>
+                        <span>Ana Sayfa</span>
+                    </a>
+                    <a href="#about" class="nav-item" data-section="about">
+                        <i class="fas fa-user"></i>
+                        <span>Hakkımda</span>
+                    </a>
+                    <a href="#skills" class="nav-item" data-section="skills">
+                        <i class="fas fa-code"></i>
+                        <span>Yetenekler</span>
+                    </a>
+                    <a href="#experience" class="nav-item" data-section="experience">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Deneyim</span>
+                    </a>
+                    <a href="#contact" class="nav-item" data-section="contact">
+                        <i class="fas fa-envelope"></i>
+                        <span>İletişim</span>
+                    </a>
+                </nav>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-spotify"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Ana İçerik -->
+        <main class="main-content">
+            <!-- Ana Sayfa -->
+            <section id="home" class="content-section active">
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <h2 class="hero-title">Merhaba, Ben <span class="text-gradient">Gürkan Kabasakal</span></h2>
+                        <p class="hero-subtitle">Full Stack Developer & UI/UX Tasarımcı</p>
+                        <p class="hero-description">
+                            5 yılı aşkın süredir web teknolojileri üzerine çalışıyorum. Modern, fonksiyonel 
+                            ve estetik web çözümleri üretmeye tutkuluyum.
+                        </p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary">Projelerimi Gör</button>
+                            <button class="btn btn-secondary">İletişime Geç</button>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="code-animation">
+                            <div class="code-line"></div>
+                            <div class="code-line"></div>
+                            <div class="code-line"></div>
+                            <div class="code-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hakkımda -->
+            <section id="about" class="content-section">
+                <div class="section-header">
+                    <h2>Hakkımda</h2>
+                    <p>Beni daha yakından tanıyın</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Merhaba, ben Gürkan Kabasakal. Bursa'da yaşıyorum ve Mekatronik Mühendisliği öğrencisiyim. 
+                            Web geliştirme ve tasarım konusunda tutkulu bir yazılım geliştiricisiyim. 
+                            Kullanıcı deneyimini ön planda tutarak modern, fonksiyonel ve estetik web çözümleri üretmeyi seviyorum.
+                        </p>
+                        <p>
+                            Teknolojiye olan ilgim küçük yaşlarda başladı ve zaman içinde kendimi front-end ve back-end 
+                            teknolojilerinde geliştirdim. Sürekli öğrenmeye ve kendimi güncel teknolojilerle geliştirmeye devam ediyorum.
+                        </p>
+                        
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Yaş:</span>
+                                <span class="info-value">18</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Şehir:</span>
+                                <span class="info-value">Bursa</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Eğitim:</span>
+                                <span class="info-value">Mekatronik Mühendisliği</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Deneyim:</span>
+                                <span class="info-value">5+ Yıl</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Email:</span>
+                                <span class="info-value">grknkbskl@gmail.com</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Telefon:</span>
+                                <span class="info-value">+90 5** *** ** **</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Yetenekler -->
+            <section id="skills" class="content-section">
+                <div class="section-header">
+                    <h2>Yetenekler</h2>
+                    <p>Teknolojik yeterliliklerim</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Frontend</h3>
+                        <div class="skill-item">
+                            <span class="skill-name">HTML/CSS</span>
+                            <div class="skill-level">
+                                <div class="skill-progress" data-level="90"></div>
+                            </div>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-level">
+                                <div class="skill-progress" data-level="85"></div>
+                            </div>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React</span>
+                            <div class="skill-level">
+                                <div class="skill-progress" data-level="80"></div>
+                            </div>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Backend</h3>
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js</span>
+                            <div class="skill-level">
+                                <div class="skill-progress" data-level="75"></div>
+                            </div>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-level">
+                                <div class="skill-progress" data-level="70"></div>
+                            </div>
+                            <span class="skill-percent">70%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">PHP</span>
+                            <div class="skill-level">
+                                <div class="skill-progress" data-level="65"></div>
+                            </div>
+                            <span class="skill-percent">65%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Araçlar</h3>
+                        <div class="skill-item">
+                            <span class="skill-name">VS Code</span>
+                            <div class="skill-level">
+                                <div class="skill-progress" data-level="95"></div>
+                            </div>
+                            <span class="skill-percent">95%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Git</span>
+                            <div class="skill-level">
+                                <div class="skill-progress" data-level="85"></div>
+                            </div>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Figma</span>
+                            <div class="skill-level">
+                                <div class="skill-progress" data-level="75"></div>
+                            </div>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deneyim -->
+            <section id="experience" class="content-section">
+                <div class="section-header">
+                    <h2>İş Deneyimi</h2>
+                    <p>Kariyer yolculuğum</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022 - Şimdi</div>
+                        <div class="timeline-content">
+                            <h3>Senior Frontend Developer</h3>
+                            <h4>Saliba Studios A.Ş.</h4>
+                            <p>React ve Vue.js kullanarak kurumsal web uygulamaları geliştirdim. Ekip liderliği yaparak proje yönetimi ve kod incelemelerinden sorumlu oldum.</p>
+                            <div class="timeline-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Vue.js</span>
+                                <span class="tag">TypeScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020 - 2022</div>
+                        <div class="timeline-content">
+                            <h3>Web Geliştirici</h3>
+                            <h4>Pixel MC A.Ş.</h4>
+                            <p>Çeşitli müşteriler için responsive web siteleri ve e-ticaret platformları geliştirdim. JavaScript and PHP tabanlı projelerde yer aldım.</p>
+                            <div class="timeline-tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">PHP</span>
+                                <span class="tag">WordPress</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2018 - 2020</div>
+                        <div class="timeline-content">
+                            <h3>Junior Developer</h3>
+                            <h4>Mavi/Avenor/Redon</h4>
+                            <p>HTML, CSS ve JavaScript kullanarak arayüz geliştirme çalışmaları yaptım. Müşteri projelerinde front-end kodlaması yaptım.</p>
+                            <div class="timeline-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- İletişim -->
+            <section id="contact" class="content-section">
+                <div class="section-header">
+                    <h2>İletişim</h2>
+                    <p>Bana ulaşın</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>grknkbskl@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Telefon</h4>
+                                <p>+90 5** *** ** **</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Konum</h4>
+                                <p>Bursa, Türkiye</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Adınız Soyadınız" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Adresiniz" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Mesajınız" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Mesaj Gönder</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gürkan Kabasakal | Kişisel Portfolio</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 </head>
