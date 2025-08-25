@@ -8,6 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+<script>
+  // Bakım modunu aç/kapat
+  const maintenanceMode = true; // true -> bakım, false -> aktif
+
+  if (maintenanceMode) {
+    window.location.href = "maintenance.html";
+  }
+</script>
 <body>
     <div class="geometry-container"></div>
     
