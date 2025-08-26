@@ -335,3 +335,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+// === Cookie Consent ===
+document.addEventListener("DOMContentLoaded", () => {
+  const consentBox = document.getElementById("cookieConsent");
+  const acceptBtn = document.getElementById("acceptCookies");
+
+  // Daha önce kabul edildiyse gösterme
+  const accepted = localStorage.getItem("cookiesAccepted");
+  if (!accepted) {
+    consentBox.style.display = "block";
+  }
+
+  acceptBtn.addEventListener("click", () => {
+    localStorage.setItem("cookiesAccepted", "true");
+    consentBox.style.display = "none";
+  });
+});
