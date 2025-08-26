@@ -317,13 +317,3 @@ function initBackToTop() {
 
 // Çağır
 initBackToTop();
-// Tema modülünü içe aktar
-import './theme.js';
-
-// Veya doğrudan fonksiyonu çağır
-document.addEventListener('DOMContentLoaded', function() {
-    // Diğer init fonksiyonları...
-    if (typeof initThemeSwitcher === 'function') {
-        initThemeSwitcher();
-    }
-});
