@@ -317,3 +317,55 @@ function initBackToTop() {
 
 // Çağır
 initBackToTop();
+// === Siyah/Beyaz Tema Değişimi – Ek JS ===
+(function () {
+  function applyTheme(theme) {
+    const root = document.documentElement;
+    if (theme === 'light') root.setAttribute('data-theme', 'light');
+    else root.removeAttribute('data-theme'); // varsayılan: dark
+    // Buton ikonunu güncelle (fallback)
+    const icon = document.querySelector('#themeToggle .theme-icon');
+    if (icon) icon.textContent = theme === 'light' ? '☀︎' : '☾';
+  }
+
+  function getInitialTheme() {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+    // Sistem tercihi (kayıt yoksa)
+    const mql = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)');
+    return mql && mql.matches ? 'light' : 'dark';
+  }
+
+  function initThemeToggle() {
+    const btn = document.getElementById('themeToggle');
+    if (!btn) return;
+
+    btn.addEventListener('click', function () {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      const next = isLight ? 'dark' : 'light';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+      // Bazı görsel efektler temaya bağlıysa burada yeniden çizilebilir
+      if (typeof window.initGeometryEffect === 'function') {
+        try { window.initGeometryEffect(); } catch(e){}
+      }
+    });
+  }
+
+  // Sistem teması değişirse (kullanıcı kaydı YOKSA) takip et
+  function bindSystemThemeWatcher() {
+    if (localStorage.getItem('theme')) return; // kullanıcı seçmişse dokunma
+    if (!window.matchMedia) return;
+    const mql = window.matchMedia('(prefers-color-scheme: light)');
+    if (mql && mql.addEventListener) {
+      mql.addEventListener('change', (e) => applyTheme(e.matches ? 'light' : 'dark'));
+    }
+  }
+
+  // Başlat
+  document.addEventListener('DOMContentLoaded', function () {
+    applyTheme(getInitialTheme());
+    initThemeToggle();
+    bindSystemThemeWatcher();
+  });
+})();
