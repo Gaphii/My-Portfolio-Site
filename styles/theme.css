@@ -1,1 +1,94 @@
+/* TEMA DEĞİŞTİRME BUTONU */
+.theme-switcher {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    z-index: 1000;
+}
 
+.theme-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--surface);
+    color: var(--text);
+    border: 2px solid var(--surface-light);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    box-shadow: 0 6px 20px rgba(187, 134, 252, 0.2);
+}
+
+.theme-btn i {
+    font-size: 16px;
+}
+
+.theme-text {
+    font-size: 14px;
+}
+
+/* LIGHT THEME DEĞİŞKENLERİ */
+[data-theme="light"] {
+    --background: #ffffff;
+    --surface: #f8f9fa;
+    --surface-light: #e9ecef;
+    --text: #212529;
+    --text-secondary: #6c757d;
+    --primary: #6f42c1;
+    --primary-dark: #5a32a3;
+    --secondary: #0dcaf0;
+}
+
+/* DARK THEME DEĞİŞKENLERİ */
+[data-theme="dark"] {
+    --background: #0a0418;
+    --surface: #1a1a2e;
+    --surface-light: #2d2d4d;
+    --text: #e6e6e6;
+    --text-secondary: #a0a0a0;
+    --primary: #bb86fc;
+    --primary-dark: #9d70e6;
+    --secondary: #03dac6;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .theme-switcher {
+        bottom: 80px;
+        right: 20px;
+    }
+    
+    .theme-btn {
+        padding: 10px 16px;
+    }
+    
+    .theme-text {
+        display: none;
+    }
+    
+    .theme-btn i {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .theme-switcher {
+        bottom: 70px;
+        right: 15px;
+    }
+    
+    .theme-btn {
+        width: 45px;
+        height: 45px;
+        padding: 0;
+        justify-content: center;
+    }
+}
