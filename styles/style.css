@@ -1106,3 +1106,14 @@ body {
 }
 
 /* Diğer stiller... */
+/* === Light Tema === */
+:root[data-theme="light"] {
+  --background: #f6f7fb;
+  --surface: #ffffff;
+  --surface-light: #e9edf5;
+  --text: #171717;
+  --text-secondary: #5a5f6d;
+  --primary: #7c5cff;
+  --primary-dark: #6446ef;
+  --secondary: #00b3a6;
+}
