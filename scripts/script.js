@@ -335,3 +335,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+// === Tema Değiştir ===
+document.addEventListener("DOMContentLoaded", () => {
+  const root = document.documentElement;
+  const btn = document.getElementById("themeToggle");
+  const saved = localStorage.getItem("theme");
+
+  // Sayfa yüklenince kaydedilmiş tema uygula
+  if (saved === "light") {
+    root.setAttribute("data-theme", "light");
+    btn.textContent = "☀️";
+  } else {
+    root.removeAttribute("data-theme"); // default dark
+    btn.textContent = "🌙";
+  }
+
+  // Butona tıklayınca tema değiştir
+  btn.addEventListener("click", () => {
+    const isLight = root.getAttribute("data-theme") === "light";
+    if (isLight) {
+      root.removeAttribute("data-theme");
+      localStorage.setItem("theme", "dark");
+      btn.textContent = "🌙";
+    } else {
+      root.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+      btn.textContent = "☀️";
+    }
+  });
+});
