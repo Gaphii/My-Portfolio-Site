@@ -1106,3 +1106,37 @@ body {
 }
 
 /* Diğer stiller... */
+/* Tema bildirimi animasyonları */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Mevcut değişken tanımlarınızın üstüne ekleyin */
+:root {
+    --primary: #bb86fc;
+    --primary-dark: #9d70e6;
+    --secondary: #03dac6;
+    --background: #0a0418;
+    --surface: #1a1a2e;
+    --surface-light: #2d2d4d;
+    --text: #e6e6e6;
+    --text-secondary: #a0a0a0;
+}
