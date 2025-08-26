@@ -1,6 +1,13 @@
 // TEMA DEĞİŞTİRME FONKSİYONU
 function initThemeSwitcher() {
     const themeToggle = document.getElementById('themeToggle');
+    
+    // Elementleri kontrol et
+    if (!themeToggle) {
+        console.error('Tema butonu bulunamadı!');
+        return;
+    }
+    
     const themeIcon = themeToggle.querySelector('i');
     const themeText = themeToggle.querySelector('.theme-text');
     const body = document.body;
@@ -25,13 +32,12 @@ function initThemeSwitcher() {
         
         // UI'ı güncelle
         updateThemeUI(newTheme);
-        
-        // Kullanıcıya feedback
-        showThemeNotification(newTheme);
     });
     
     // UI güncelleme fonksiyonu
     function updateThemeUI(theme) {
+        if (!themeIcon || !themeText) return;
+        
         if (theme === 'dark') {
             themeIcon.className = 'fas fa-moon';
             themeText.textContent = 'Koyu Mod';
@@ -39,35 +45,6 @@ function initThemeSwitcher() {
             themeIcon.className = 'fas fa-sun';
             themeText.textContent = 'Açık Mod';
         }
-    }
-    
-    // Bildirim gösterimi
-    function showThemeNotification(theme) {
-        const notification = document.createElement('div');
-        notification.className = 'theme-notification';
-        notification.textContent = theme === 'dark' ? 'Koyu tema etkinleştirildi' : 'Açık tema etkinleştirildi';
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 12px 20px;
-            background: var(--surface);
-            color: var(--text);
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 10000;
-            animation: slideIn 0.3s ease;
-        `;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.style.animation = 'slideOut 0.3s ease';
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 2000);
     }
     
     // Sistem temasını takip et
@@ -84,18 +61,28 @@ function initThemeSwitcher() {
         });
     }
     
-    // Sayfa yüklendiğinde
-    document.addEventListener('DOMContentLoaded', function() {
-        watchSystemTheme();
-        
-        // Eğer tema tercihi yoksa sistem temasını kullan
-        if (!savedTheme) {
-            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            body.setAttribute('data-theme', systemTheme);
-            updateThemeUI(systemTheme);
-        }
-    });
+    // Eğer tema tercihi yoksa sistem temasını kullan
+    if (!savedTheme) {
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        body.setAttribute('data-theme', systemTheme);
+        updateThemeUI(systemTheme);
+    }
+    
+    watchSystemTheme();
+}
+
+// Hata yakalama
+function safeInitTheme() {
+    try {
+        initThemeSwitcher();
+    } catch (error) {
+        console.error('Tema yükleyici hatası:', error);
+    }
 }
 
 // Sayfa yüklendiğinde çalıştır
-document.addEventListener('DOMContentLoaded', initThemeSwitcher);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', safeInitTheme);
+} else {
+    safeInitTheme();
+}
