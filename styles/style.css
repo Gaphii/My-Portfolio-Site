@@ -1117,23 +1117,12 @@ body {
   --primary-dark: #6446ef;
   --secondary: #00b3a6;
 }
-/* === Light Tema === */
-:root[data-theme="light"] {
-  --background: #f6f7fb;
-  --surface: #ffffff;
-  --surface-light: #e9edf5;
-  --text: #171717;
-  --text-secondary: #5a5f6d;
-  --primary: #7c5cff;
-  --primary-dark: #6446ef;
-  --secondary: #00b3a6;
-}
 
-/* Tema butonu */
+/* Tema Butonu */
 .theme-toggle {
   position: fixed;
-  bottom: 20px;
   right: 20px;
+  bottom: 80px;   /* back-to-top (20px) + 60px boşluk → onun ÜSTÜNDE çıkar */
   z-index: 9999;
   width: 44px;
   height: 44px;
