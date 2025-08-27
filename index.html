@@ -555,3 +555,62 @@
     <script src="scripts/script.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mac Tarzı Sidebar</title>
+    <link rel="stylesheet" href="sidebar.css">
+</head>
+<body>
+    <!-- Sidebar tetikleyici buton -->
+    <button id="sidebar-toggle" class="sidebar-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Mac tarzı sidebar -->
+    <div class="mac-sidebar">
+        <div class="sidebar-header">
+            <h3 class="sidebar-title">Menü</h3>
+            <button class="sidebar-close">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-nav-item active">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Ana Sayfa</span>
+            </a>
+            <a href="#" class="sidebar-nav-item">
+                <span class="nav-icon">📁</span>
+                <span class="nav-text">Projeler</span>
+            </a>
+            <a href="#" class="sidebar-nav-item">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">İstatistikler</span>
+            </a>
+            <a href="#" class="sidebar-nav-item">
+                <span class="nav-icon">📞</span>
+                <span class="nav-text">İletişim</span>
+            </a>
+            <a href="#" class="sidebar-nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-text">Ayarlar</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <p>&copy; 2023 Şirketiniz</p>
+        </div>
+    </div>
+
+    <!-- Ana içerik -->
+    <main class="main-content">
+        <h1>Ana İçerik Başlığı</h1>
+        <p>Sidebar'ı açıp kapatmak için sol üst köşedeki butona tıklayın. Sidebar Mac tarzında kayarak açılacak ve kapanacaktır.</p>
+        <!-- Buraya sitenizin mevcut içeriği gelecek -->
+    </main>
+
+    <script src="sidebar.js"></script>
+</body>
+</html>
