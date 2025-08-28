@@ -238,11 +238,11 @@ body {
     transform: translateY(-3px);
 }
 
-/* Sidebar Toggle Button - DÜZELTİLMİŞ */
+/* Sidebar Toggle Button */
 .sidebar-toggle {
     position: fixed;
     top: 20px;
-    left: 320px; /* Sidebar açıkken pozisyon */
+    left: 320px;
     z-index: 1100;
     background: var(--primary);
     color: white;
@@ -254,29 +254,17 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.4s ease; /* Tüm özelliklere transition eklendi */
+    transition: var(--transition);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Sidebar kapalıyken butonun pozisyonu */
-.sidebar.collapsed ~ .sidebar-toggle {
-    left: 20px; /* Sidebar kapalıyken sola kaydır */
+.sidebar.collapsed + .sidebar-toggle {
+    left: 20px;
 }
 
 .sidebar-toggle:hover {
     background: var(--primary-dark);
     transform: scale(1.1);
-}
-
-/* Responsive tasarım için düzenleme */
-@media (max-width: 1024px) {
-    .sidebar-toggle {
-        left: 20px; /* Mobilde her zaman solda */
-    }
-    
-    .sidebar.collapsed ~ .sidebar-toggle {
-        left: 20px; /* Mobilde her zaman aynı yerde */
-    }
 }
 
 /* Ana İçerik */
@@ -305,17 +293,6 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Ana İçerik için margin-left transition ekleme */
-.main-content {
-    grid-column: 2;
-    padding: 2rem;
-    margin-left: 300px;
-    transition: margin-left 0.4s ease; /* Bu satırı ekleyin */
-}
-
-.sidebar.collapsed ~ .main-content {
-    margin-left: 0;
-}
 /* Hero Section */
 .hero-section {
     display: grid;
