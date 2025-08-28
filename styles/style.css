@@ -1198,3 +1198,135 @@ body {
   from { transform: translateY(40px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
+/* ========================
+   GENEL STİLLER
+======================== */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color, #f9f9f9);
+    color: var(--text-color, #111);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ========================
+   DİL SEÇİCİ
+======================== */
+.language-selector {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2000;
+}
+.lang-toggle {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.lang-toggle:hover {
+    background: #444;
+}
+.lang-menu {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    background: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.lang-menu li {
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+}
+.lang-menu li:hover {
+    background: #444;
+}
+.language-selector.active .lang-menu {
+    max-height: 300px;
+    opacity: 1;
+}
+
+/* ========================
+   SIDEBAR
+======================== */
+.sidebar {
+    width: 260px;
+    background: var(--sidebar-bg, #111);
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+    transition: transform 0.4s ease-in-out;
+    z-index: 1500;
+}
+.sidebar.collapsed {
+    transform: translateX(-100%);
+}
+
+/* Sidebar toggle button */
+.sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 280px;
+    font-size: 22px;
+    padding: 8px 12px;
+    border: none;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+    z-index: 2001;
+    transition: background 0.3s ease, left 0.4s ease;
+}
+.sidebar-toggle:hover {
+    background: #444;
+}
+.sidebar.collapsed + .sidebar-toggle {
+    left: 20px;
+}
+
+/* Sidebar içindeki animasyonlu nav */
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.2s;
+}
+.sidebar-nav a:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateX(5px);
+}
+
+/* ========================
+   MAIN CONTENT
+======================== */
+.main-content {
+    margin-left: 260px;
+    padding: 20px;
+    transition: margin-left 0.4s ease;
+}
+.sidebar.collapsed ~ .main-content {
+    margin-left: 0;
+}
+
+/* ========================
+   BACK TO TOP, THEME TOGGLE, COOKIES
+======================== */
+.back-to-top,
+.theme-toggle,
+.cookie-consent {
+    transition: all 0.3s ease;
+}
