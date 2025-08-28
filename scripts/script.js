@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             education: "Eğitim:",
             highSchool: "Lise Son",
             experience: "Deneyim:",
+            Employer:"İşe alım:",
             phone: "Telefon:",
             skillsSub: "Teknolojik yeterliliklerim",
             frontend: "Frontend",
