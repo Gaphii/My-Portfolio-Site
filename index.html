@@ -10,7 +10,8 @@
 </head>
 <body>
     <div class="geometry-container"></div>
-     <!-- Dil Seçici -->
+    
+    <!-- Dil Seçici -->
     <div class="language-selector">
         <button class="lang-toggle">🌐</button>
         <ul class="lang-menu">
@@ -27,7 +28,7 @@
     <!-- Yükleniyor Ekranı -->
     <div class="loading-screen">
         <div class="loading-spinner"></div>
-        <p>Yükleniyor...</p>
+        <p data-key="loading">Yükleniyor...</p>
     </div>
     
     <div class="container">
@@ -39,48 +40,48 @@
                         <div class="avatar-initials">GK</div>
                     </div>
                     <h1 class="profile-name">Gürkan Kabasakal</h1>
-                    <p class="profile-title">Full Stack Developer</p>
+                    <p class="profile-title" data-key="jobTitle">Full Stack Developer</p>
                 </div>
                 
                 <div class="profile-stats">
                     <div class="stat-item">
                         <span class="stat-number">3+</span>
-                        <span class="stat-label">Yıl Deneyim</span>
+                        <span class="stat-label" data-key="experienceYears">Yıl Deneyim</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">24+</span>
-                        <span class="stat-label">Proje</span>
+                        <span class="stat-label" data-key="projects">Proje</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">12+</span>
-                        <span class="stat-label">İş Yeri</span>
+                        <span class="stat-label" data-key="workplaces">İş Yeri</span>
                     </div>
                 </div>
                 
                 <nav class="sidebar-nav">
                     <a href="#home" class="nav-item active" data-section="home">
                         <i class="fas fa-home"></i>
-                        <span>Ana Sayfa</span>
+                        <span data-key="home">Ana Sayfa</span>
                     </a>
                     <a href="#about" class="nav-item" data-section="about">
                         <i class="fas fa-user"></i>
-                        <span>Hakkımda</span>
+                        <span data-key="about">Hakkımda</span>
                     </a>
                     <a href="#skills" class="nav-item" data-section="skills">
                         <i class="fas fa-code"></i>
-                        <span>Yetenekler</span>
+                        <span data-key="skills">Yetenekler</span>
                     </a>
                     <a href="#projects" class="nav-item" data-section="projects">
                         <i class="fas fa-briefcase"></i>
-                        <span>Projelerim</span>
+                        <span data-key="myProjects">Projelerim</span>
                     </a>
                     <a href="#experience" class="nav-item" data-section="experience">
                         <i class="fas fa-chart-line"></i>
-                        <span>Deneyim</span>
+                        <span data-key="experience">Deneyim</span>
                     </a>
                     <a href="#contact" class="nav-item" data-section="contact">
                         <i class="fas fa-envelope"></i>
-                        <span>İletişim</span>
+                        <span data-key="contact">İletişim</span>
                     </a>
                 </nav>
                 
@@ -110,15 +111,15 @@
             <section id="home" class="content-section active">
                 <div class="hero-section">
                     <div class="hero-content">
-                        <h2 class="hero-title">Merhaba, Ben <span class="text-gradient">Gürkan Kabasakal</span></h2>
-                        <p class="hero-subtitle">Full Stack Developer & UI/UX Tasarımcı</p>
-                        <p class="hero-description">
+                        <h2 class="hero-title" data-key="hello">Merhaba, Ben <span class="text-gradient">Gürkan Kabasakal</span></h2>
+                        <p class="hero-subtitle" data-key="jobDesc">Full Stack Developer & UI/UX Tasarımcı</p>
+                        <p class="hero-description" data-key="heroDesc">
                         3 yılı aşkın süredir web teknolojileri üzerine çalışıyorum. Modern, fonksiyonel 
                             ve estetik web çözümleri üretmeye tutkuluyum.
                         </p>
                         <div class="hero-actions">
-                            <button class="btn btn-primary" data-section="projects">Projelerimi Gör</button>
-                            <button class="btn btn-secondary" data-section="contact">İletişime Geç</button>
+                            <button class="btn btn-primary" data-section="projects" data-key="viewProjects">Projelerimi Gör</button>
+                            <button class="btn btn-secondary" data-section="contact" data-key="contactMe">İletişime Geç</button>
                         </div>
                     </div>
                     <div class="hero-visual">
@@ -135,36 +136,36 @@
             <!-- Hakkımda -->
             <section id="about" class="content-section">
                 <div class="section-header">
-                    <h2>Hakkımda</h2>
-                    <p>Beni daha yakından tanıyın</p>
+                    <h2 data-key="about">Hakkımda</h2>
+                    <p data-key="aboutSub">Beni daha yakından tanıyın</p>
                 </div>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>
+                        <p data-key="aboutDesc1">
                             Merhaba, ben Gürkan Kabasakal. Bursa'da yaşıyorum ve Lise Son öğrencisiyim. 
                             Web geliştirme ve tasarım konusunda tutkulu bir yazılım geliştiricisiyim. 
                             Kullanıcı deneyimini ön planda tutarak modern, fonksiyonel ve estetik web çözümleri üretmeyi seviyorum.
                         </p>
-                        <p>
+                        <p data-key="aboutDesc2">
                             Teknolojiye olan ilgim küçük yaşlarda başladı ve zaman içinde kendimi front-end ve back-end 
                             teknolojilerinde geliştirdim. Sürekli öğrenmeye ve kendimi güncel teknolojilerle geliştirmeye devam ediyorum.
                         </p>
                         
                         <div class="info-grid">
                             <div class="info-item">
-                                <span class="info-label">Yaş:</span>
+                                <span class="info-label" data-key="age">Yaş:</span>
                                 <span class="info-value">18</span>
                             </div>
                             <div class="info-item">
-                                <span class="info-label">Şehir:</span>
+                                <span class="info-label" data-key="city">Şehir:</span>
                                 <span class="info-value">Bursa</span>
                             </div>
                             <div class="info-item">
-                                <span class="info-label">Eğitim:</span>
-                                <span class="info-value">Lise Son</span>
+                                <span class="info-label" data-key="education">Eğitim:</span>
+                                <span class="info-value" data-key="highSchool">Lise Son</span>
                             </div>
                             <div class="info-item">
-                                <span class="info-label">Deneyim:</span>
+                                <span class="info-label" data-key="experience">Deneyim:</span>
                                 <span class="info-value">5+ Yıl</span>
                             </div>
                             <div class="info-item">
@@ -172,7 +173,7 @@
                                 <span class="info-value">grknkbskl@gmail.com</span>
                             </div>
                             <div class="info-item">
-                                <span class="info-label">Telefon:</span>
+                                <span class="info-label" data-key="phone">Telefon:</span>
                                 <span class="info-value">+90 5** *** ** **</span>
                             </div>
                         </div>
@@ -183,12 +184,12 @@
             <!-- Yetenekler -->
             <section id="skills" class="content-section">
                 <div class="section-header">
-                    <h2>Yetenekler</h2>
-                    <p>Teknolojik yeterliliklerim</p>
+                    <h2 data-key="skills">Yetenekler</h2>
+                    <p data-key="skillsSub">Teknolojik yeterliliklerim</p>
                 </div>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h3>Frontend</h3>
+                        <h3 data-key="frontend">Frontend</h3>
                         <div class="skill-item">
                             <span class="skill-name">HTML/CSS</span>
                             <div class="skill-level">
@@ -213,7 +214,7 @@
                     </div>
                     
                     <div class="skill-category">
-                        <h3>Backend</h3>
+                        <h3 data-key="backend">Backend</h3>
                         <div class="skill-item">
                             <span class="skill-name">Node.js</span>
                             <div class="skill-level">
@@ -238,7 +239,7 @@
                     </div>
                     
                     <div class="skill-category">
-                        <h3>Araçlar</h3>
+                        <h3 data-key="tools">Araçlar</h3>
                         <div class="skill-item">
                             <span class="skill-name">VS Code</span>
                             <div class="skill-level">
@@ -267,15 +268,15 @@
             <!-- Projelerim -->
             <section id="projects" class="content-section">
                 <div class="section-header">
-                    <h2>Projelerim</h2>
-                    <p>Yaptığım çalışmalardan öne çıkanlar</p>
+                    <h2 data-key="myProjects">Projelerim</h2>
+                    <p data-key="projectsSub">Yaptığım çalışmalardan öne çıkanlar</p>
                 </div>
                 
                 <div class="projects-filter">
-                    <button class="filter-btn active" data-filter="all">Tümü</button>
-                    <button class="filter-btn" data-filter="web">Web</button>
-                    <button class="filter-btn" data-filter="mobile">Mobil</button>
-                    <button class="filter-btn" data-filter="design">Tasarım</button>
+                    <button class="filter-btn active" data-filter="all" data-key="all">Tümü</button>
+                    <button class="filter-btn" data-filter="web" data-key="web">Web</button>
+                    <button class="filter-btn" data-filter="mobile" data-key="mobile">Mobil</button>
+                    <button class="filter-btn" data-filter="design" data-key="design">Tasarım</button>
                 </div>
                 
                 <div class="projects-grid">
@@ -297,8 +298,8 @@
                             </div>
                         </div>
                         <div class="project-info">
-                            <h3>E-Ticaret Platformu</h3>
-                            <p>React ve Node.js ile geliştirdiğim modern e-ticaret çözümü.</p>
+                            <h3 data-key="ecommerceProject">E-Ticaret Platformu</h3>
+                            <p data-key="ecommerceDesc">React ve Node.js ile geliştirdiğim modern e-ticaret çözümü.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">React</span>
                                 <span class="tech-tag">Node.js</span>
@@ -325,8 +326,8 @@
                             </div>
                         </div>
                         <div class="project-info">
-                            <h3>Finans Dashboard</h3>
-                            <p>Gerçek zamanlı veri görselleştirme için dashboard uygulaması.</p>
+                            <h3 data-key="financeProject">Finans Dashboard</h3>
+                            <p data-key="financeDesc">Gerçek zamanlı veri görselleştirme için dashboard uygulaması.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Vue.js</span>
                                 <span class="tech-tag">D3.js</span>
@@ -353,8 +354,8 @@
                             </div>
                         </div>
                         <div class="project-info">
-                            <h3>Fitness Uygulaması</h3>
-                            <p>Kişisel antrenman takibi için React Native uygulaması.</p>
+                            <h3 data-key="fitnessProject">Fitness Uygulaması</h3>
+                            <p data-key="fitnessDesc">Kişisel antrenman takibi için React Native uygulaması.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">React Native</span>
                                 <span class="tech-tag">Redux</span>
@@ -381,8 +382,8 @@
                             </div>
                         </div>
                         <div class="project-info">
-                            <h3>UI/UX Tasarım Seti</h3>
-                            <p>Modern arayüzler için tasarım sistemi ve component kütüphanesi.</p>
+                            <h3 data-key="uiuxProject">UI/UX Tasarım Seti</h3>
+                            <p data-key="uiuxDesc">Modern arayüzler için tasarım sistemi ve component kütüphanesi.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Figma</span>
                                 <span class="tech-tag">Adobe XD</span>
@@ -409,8 +410,8 @@
                             </div>
                         </div>
                         <div class="project-info">
-                            <h3>Kişisel Blog</h3>
-                            <p>Next.js ve GraphQL ile geliştirdiğim kişisel blog platformu.</p>
+                            <h3 data-key="blogProject">Kişisel Blog</h3>
+                            <p data-key="blogDesc">Next.js ve GraphQL ile geliştirdiğim kişisel blog platformu.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Next.js</span>
                                 <span class="tech-tag">GraphQL</span>
@@ -437,8 +438,8 @@
                             </div>
                         </div>
                         <div class="project-info">
-                            <h3>Yemek Tarifleri</h3>
-                            <p>Yemek tarifleri paylaşımı için Flutter uygulaması.</p>
+                            <h3 data-key="recipeProject">Yemek Tarifleri</h3>
+                            <p data-key="recipeDesc">Yemek tarifleri paylaşımı için Flutter uygulaması.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Flutter</span>
                                 <span class="tech-tag">Dart</span>
@@ -452,16 +453,16 @@
             <!-- Deneyim -->
             <section id="experience" class="content-section">
                 <div class="section-header">
-                    <h2>İş Deneyimi</h2>
-                    <p>Kariyer yolculuğum</p>
+                    <h2 data-key="experience">İş Deneyimi</h2>
+                    <p data-key="experienceSub">Kariyer yolculuğum</p>
                 </div>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="timeline-date">2022 - Şimdi</div>
+                        <div class="timeline-date">2022 - <span data-key="now">Şimdi</span></div>
                         <div class="timeline-content">
-                            <h3>Senior Frontend Developer</h3>
+                            <h3 data-key="seniorFrontend">Senior Frontend Developer</h3>
                             <h4>Saliba Studios A.Ş.</h4>
-                            <p>React ve Vue.js kullanarak kurumsal web uygulamaları geliştirdim. Ekip liderliği yaparak proje yönetimi ve kod incelemelerinden sorumlu oldum.</p>
+                            <p data-key="jobDesc1">React ve Vue.js kullanarak kurumsal web uygulamaları geliştirdim. Ekip liderliği yaparak proje yönetimi ve kod incelemelerinden sorumlu oldum.</p>
                             <div class="timeline-tags">
                                 <span class="tag">React</span>
                                 <span class="tag">Vue.js</span>
@@ -472,9 +473,9 @@
                     <div class="timeline-item">
                         <div class="timeline-date">2020 - 2022</div>
                         <div class="timeline-content">
-                            <h3>Web Geliştirici</h3>
+                            <h3 data-key="webDeveloper">Web Geliştirici</h3>
                             <h4>Pixel MC A.Ş.</h4>
-                            <p>Çeşitli müşteriler için responsive web siteleri ve e-ticaret platformları geliştirdim. JavaScript ve PHP tabanlı projelerde yer aldım.</p>
+                            <p data-key="jobDesc2">Çeşitli müşteriler için responsive web siteleri ve e-ticaret platformları geliştirdim. JavaScript ve PHP tabanlı projelerde yer aldım.</p>
                             <div class="timeline-tags">
                                 <span class="tag">JavaScript</span>
                                 <span class="tag">PHP</span>
@@ -485,9 +486,9 @@
                     <div class="timeline-item">
                         <div class="timeline-date">2018 - 2020</div>
                         <div class="timeline-content">
-                            <h3>Junior Developer</h3>
+                            <h3 data-key="juniorDeveloper">Junior Developer</h3>
                             <h4>Mavi/Avenor/Redon</h4>
-                            <p>HTML, CSS ve JavaScript kullanarak arayüz geliştirme çalışmaları yaptım. Müşteri projelerinde front-end kodlaması yaptım.</p>
+                            <p data-key="jobDesc3">HTML, CSS ve JavaScript kullanarak arayüz geliştirme çalışmaları yaptım. Müşteri projelerinde front-end kodlaması yaptım.</p>
                             <div class="timeline-tags">
                                 <span class="tag">HTML</span>
                                 <span class="tag">CSS</span>
@@ -501,8 +502,8 @@
             <!-- İletişim -->
             <section id="contact" class="content-section">
                 <div class="section-header">
-                    <h2>İletişim</h2>
-                    <p>Bana ulaşın</p>
+                    <h2 data-key="contact">İletişim</h2>
+                    <p data-key="contactSub">Bana ulaşın</p>
                 </div>
                 <div class="contact-content">
                     <div class="contact-info">
@@ -520,7 +521,7 @@
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div class="contact-details">
-                                <h4>Telefon</h4>
+                                <h4 data-key="phone">Telefon</h4>
                                 <p>+90 5** *** ** **</p>
                             </div>
                         </div>
@@ -529,7 +530,7 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div class="contact-details">
-                                <h4>Konum</h4>
+                                <h4 data-key="location">Konum</h4>
                                 <p>Bursa, Türkiye</p>
                             </div>
                         </div>
@@ -537,44 +538,37 @@
                     
                     <form class="contact-form">
                         <div class="form-group">
-                            <input type="text" placeholder="Adınız Soyadınız" required>
+                            <input type="text" placeholder="Adınız Soyadınız" required data-key="namePlaceholder">
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Email Adresiniz" required>
+                            <input type="email" placeholder="Email Adresiniz" required data-key="emailPlaceholder">
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Mesajınız" rows="5" required></textarea>
+                            <textarea placeholder="Mesajınız" rows="5" required data-key="messagePlaceholder"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Mesaj Gönder</button>
+                        <button type="submit" class="btn btn-primary" data-key="sendMessage">Mesaj Gönder</button>
                     </form>
                 </div>
             </section>
         </main>
     </div>
+    
     <!-- BACK TO TOP BUTONU -->
     <button id="backToTop" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
+    
     <!-- Tema Değiştir Butonu -->
-<button id="themeToggle" class="theme-toggle" aria-label="Tema Değiştir">
-  🌙
-</button>
+    <button id="themeToggle" class="theme-toggle" aria-label="Tema Değiştir">
+        🌙
+    </button>
+    
     <!-- Cookie Bildirimi -->
-<div id="cookieConsent" class="cookie-consent">
-  <p>Web sitemizde çerezler kullanılmaktadır. <a href="#">Detaylı bilgi</a></p>
-  <button id="acceptCookies" class="btn-accept">Kabul Et</button>
-</div>
+    <div id="cookieConsent" class="cookie-consent">
+        <p data-key="cookieText">Web sitemizde çerezler kullanılmaktadır. <a href="#" data-key="cookieDetails">Detaylı bilgi</a></p>
+        <button id="acceptCookies" class="btn-accept" data-key="cookieAccept">Kabul Et</button>
+    </div>
 
     <script src="scripts/script.js"></script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mac Tarzı Sidebar</title>
-    <link rel="stylesheet" href="sidebar.css">
-</head>
-<body>
-   
