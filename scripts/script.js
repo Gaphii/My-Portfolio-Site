@@ -351,3 +351,23 @@ document.addEventListener("DOMContentLoaded", () => {
     consentBox.style.display = "none";
   });
 });
+// Dil seçici
+function setLanguage(lang) {
+  document.querySelectorAll("[data-key]").forEach(el => {
+    const key = el.getAttribute("data-key");
+    if (translations[lang][key]) {
+      el.innerHTML = translations[lang][key];
+    }
+  });
+  localStorage.setItem("lang", lang);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("lang") || "tr";
+  setLanguage(savedLang);
+
+  const langSelector = document.querySelector(".language-selector");
+  const toggleBtn = document.querySelector(".lang-toggle");
+  const items = document.querySelectorAll(".lang-menu li");
+
+  toggleBtn.add
